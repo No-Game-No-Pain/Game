@@ -1,0 +1,11 @@
+*{
+    background-image: url(../images/backselec.png);
+}
+#team1{
+    color: aqua;
+    width: 577px;
+    height: 198px;
+    flex-shrink: 0;
+    border-radius: 17px;
+    background: rgba(0, 0, 0, 0.40);
+}
