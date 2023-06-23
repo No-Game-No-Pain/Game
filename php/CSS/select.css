@@ -1,11 +1,36 @@
 *{
     background-image: url(../images/backselec.png);
 }
+section{
+    display: grid;
+
+}
 #team1{
-    color: aqua;
+    grid-column-start:  1;
+    grid-column-end:  2;
+    grid-row-start: 1 ;
+    grid-row-end:3  ;
+}
+#team1{
+    grid-column-start:  2;
+    grid-column-end:  3;
+    grid-row-start: 1 ;
+    grid-row-end:2  ;
+}
+#team2{
+    grid-column-start:  3;
+    grid-column-end:  4;
+    grid-row-start: 1 ;
+    grid-row-end:3  ;
+}
+#team1{
     width: 577px;
     height: 198px;
     flex-shrink: 0;
     border-radius: 17px;
     background: rgba(0, 0, 0, 0.40);
+    filter: blur(10px);
+}
+#team1 h2{
+    filter: blur(0px);
 }

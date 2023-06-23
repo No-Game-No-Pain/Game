@@ -1,11 +1,10 @@
 <div id="team1">
     <h2>Équipe 1</h2>
-
-</div>
-<div>
     <h2>Nom de faction</h2>
 </div>
-<div>
+<div id="choix">
+</div>
+<div id="team2">
     <h2>Équipe 2</h2>
 
 </div>
