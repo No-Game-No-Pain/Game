@@ -1,14 +1,23 @@
 <?php
     include "./includes/head.html"; 
 ?>
-
-
+<body>
 <header>
 </header>
-<body>
+<section>
+    <?php
+        if(isset($_GET['add'])){
+            include "./includes/add.php";
+        }
+        elseif(isset($_GET['select'])){
+            include "./includes/select.php";
+        }
+        elseif(isset($_GET['game'])){
+            include "./includes/game.php";
+        }
+        else{
+            include "./includes/accueil.html";
+        }
+    ?>
+</section>
 </body>
-
-
-<?php
-    include "./includes/footer.html";
-?>
