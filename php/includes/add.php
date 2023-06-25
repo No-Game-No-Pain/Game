@@ -1,52 +1,47 @@
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 	<head>
 		<title>Add player and class</title>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+		
 		
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./CSS/add.css" />
+  
+        <link rel="stylesheet" type="text/css" href="./CSS/add.css" />
         
         
         </head>
-	<body>
-
     <body class="page1">
-        <div class="container">
-            <header>
-                <br>
-            </header>
-            <div class="row justify-content-center">
-                <div class="col-md-6 mt-3">
-                    <form>
-                    <div class="form-group row">
-                        <label for="inputname" class="col-sm-4 col-form-label border text-center">Nom du joueur :</label>
-                    <div class="col-sm-6">
-                    <input type="text" class="form-control" id="inputname" placeholder="Ajouter votre nom">
-                    </div>
-                    </div>
-                    <div class="dropdown ">
-                    <label for="dropdownMenu2" class="col-sm-4 col-form-label border text-center">Choisissez votre classe :</label>
-                    <button class="btn btn-primary dropdown-toggle dropd offset-md-1" type="button" id="dropdownMenu2" data-mdb-toggle="dropdown" aria-expanded="false">
-                     Choix de Carectere
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <li><button class="dropdown-item" type="button">Mage</button></li>
-                        <li><button class="dropdown-item" type="button">Gunner</button></li>
-                        <li><button class="dropdown-item" type="button">Cowboy</button></li>
-                        <li><button class="dropdown-item" type="button">Hazel</button></li>
-                        <li><button class="dropdown-item" type="button">Cyber</button></li>
-                        </ul>
-                        </div>
-                        <br><br>
-                        <div class ='mt-3 offset-6 mar'>
-                        <button type="button" class="btn btn-primary button-color" >Ajouter</button>
-                        <button type="button" class="btn btn-primary button-color">Supprimer</button>
-                        </div>
+        <div class="container-add">
+            <div class="mute">
+             <img src="./images/mute.jpg" alt="mute">
+                </div>
+            <div class="input-name">
+                <form method="post" action="/index.php" enctype="multipart/form-data">
+            
+                <label for="inputField" class="borders"> Nom du joueur :  </label>
+                 <input type="text" id="inputField" name="name" placeholder="Ajouter votre nom">
 
-                    </form>
-                    <div class='border text-center'>
-                        <h3>Liste des classes : </h3>
+
+
+            </div>
+            <div class="input-class">
+                <label for="inputclass" class="borders"> Choisissez votre classe :  </label>
+                <select name="inputclass" id="class" class="selectperso">
+                    <option value="Mage">Mage</option>
+                    <option value="Gunner">Gunner</option>
+                    <option value="Cowboy">Cowboy</option>
+                    <option value="Hazel">Hazel</option>
+                    <option value="Cyber">Cyber</option>
+                </select>
+            </div>
+            <div class ='button1'>
+                        <button type="submit" class="add borders" >Ajouter</button>
+                        <button type="submit" class="remove borders">Supprimer</button>
+                        </div>
+            </form>
+            <div class="description1 ">
+                <div class="list borders">
+                    <h3>Liste des classes : </h3>
                         <ul>
                             <li>Buccaneer : 75 HP / 55 ATK</li>
                             <li>Mage : 80 HP / 60 ATK</li>
@@ -56,28 +51,47 @@
                             <li>Cyber : 150 HP / 30 ATK</li>
 
                         </ul>
-                    </div>
-
-
-
+                        <p style="font-size: 10px;font-weight: 100;font-family: initial;">Chaque lvl up donne +10 HP et + 5 ATK</p>
                 </div>
-                <div class="col-md-6">
-
-
-
-                </div>
-
             </div>
+            
+            <div class="input-fraction">
+                <form method="post" action="/index.php" enctype="multipart/form-data">
+            
+                <label for="inputFaction" class="borders">  Nom de la faction :  </label>
+                <input type="text" id="inputFaction" name="faction" placeholder="Ajouter nom de la faction">
+            </div>
+            <div class="gridfaction">
+                <div class="borderfaction">
+                    <div class="factionimg factionimg1">
+                        <img id="f1" style="width: 45px;margin-left: -30px;" src="./images/f1.png" alt="faction">
+                        <div class="text-overlay text-overlay1">
+                        <p>Les chevaliers de l’aube<br>Buff +5 ATK  et +5 HP</p>
+                    </div>  
+                    <div class="factionimg factionimg2">
+                        <img id="f2"style="width: 45px;margin-left: -30px;" src="./images/f2.png" alt="faction">
+                        <div class="text-overlay text-overlay2">
+                        <p>Chevaliers des ténébres<br>Buff +8 ATK et +2 HP</p>
+                    </div>  
+                    <div class="factionimg factionimg3">
+                        <img id="f3"style="width: 45px;margin-left: -30px;" src="./images/f3.png" alt="faction">
+                        <div class="text-overlay text-overlay3">
+                        <p>Sentinelles de la lumières<br>Buff +8 HP et + 2 ATK</p>
+                    </div>  
+                </div>
+                </div>
+            </div>
+            <div class="grid8">
+                <div class="optionfaction">
+                <select name="inputclass" id="faction" class="">
+                    <option value="Les chevaliers de l’aube">Les chevaliers de l’aube</option>
+                    <option value="Chevaliers des ténébres">Chevaliers des ténébres</option>
+                    <option value="Sentinelles de la lumières">Sentinelles de la lumières</option>
+                </select>
+                </div>
+            </div>
+    
+           
         </div>
-
-
-
-       
-<script>
- $(document).ready(function(){
-  $(".dropdown-toggle").dropdown();
-});
-</script>
-
     </body>
-</html>
+    </html>
