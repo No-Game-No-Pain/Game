@@ -45,6 +45,18 @@
                         </div>
 
                     </form>
+                    <div class='border text-center'>
+                        <h3>Liste des classes : </h3>
+                        <ul>
+                            <li>Buccaneer : 75 HP / 55 ATK</li>
+                            <li>Mage : 80 HP / 60 ATK</li>
+                            <li>Gunner : 50 HP / 100 ATK</li>
+                            <li>Cowboy : 70 HP / 60 ATK</li>
+                            <li>Hazel : 100 HP / 45 ATK</li>
+                            <li>Cyber : 150 HP / 30 ATK</li>
+
+                        </ul>
+                    </div>
 
 
 
