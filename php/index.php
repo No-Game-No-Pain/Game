@@ -16,7 +16,7 @@
             include "./includes/game.php";
         }
         else{
-            include "./includes/accueil.html";
+            include "./includes/acceuil.html";
         }
     ?>
 </section>
