@@ -1,14 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<title>Add player and class</title>
-		
-		
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  
-        <link rel="stylesheet" type="text/css" href="./CSS/add.css" />
-        
-        
+    
+	    <head>
+		    <title>Add player and class</title>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="./CSS/add.css" />
         </head>
     <body class="page1">
         <div class="container-add">
@@ -67,31 +62,56 @@
                         <img id="f1" style="width: 45px;margin-left: -30px;" src="./images/f1.png" alt="faction">
                         <div class="text-overlay text-overlay1">
                         <p>Les chevaliers de l’aube<br>Buff +5 ATK  et +5 HP</p>
+                        </div>
                     </div>  
                     <div class="factionimg factionimg2">
                         <img id="f2"style="width: 45px;margin-left: -30px;" src="./images/f2.png" alt="faction">
                         <div class="text-overlay text-overlay2">
                         <p>Chevaliers des ténébres<br>Buff +8 ATK et +2 HP</p>
+                        </div>
                     </div>  
                     <div class="factionimg factionimg3">
                         <img id="f3"style="width: 45px;margin-left: -30px;" src="./images/f3.png" alt="faction">
                         <div class="text-overlay text-overlay3">
                         <p>Sentinelles de la lumières<br>Buff +8 HP et + 2 ATK</p>
-                    </div>  
-                </div>
-                </div>
+                        </div>
+                    </div>
+                </div>  
+                
+                
             </div>
-            <div class="grid8">
+          
+            <div class="grid8" style="grid-area: area8;">
                 <div class="optionfaction">
-                <select name="inputclass" id="faction" class="">
+                    <select name="inputclass" id="faction" class="">
                     <option value="Les chevaliers de l’aube">Les chevaliers de l’aube</option>
                     <option value="Chevaliers des ténébres">Chevaliers des ténébres</option>
                     <option value="Sentinelles de la lumières">Sentinelles de la lumières</option>
-                </select>
+                    </select>
+                </div>
+
+            </div>
+            
+            <div class="grid10">
+                <div class="background">
+                    <h3>Choix de l'Arène :</h3>
+                    <img class="bg"src="./images/castle bridge.png" alt="background">
+
                 </div>
             </div>
     
            
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js">
+                $(document).ready(function(){
+                $('.carousel').click({
+                slidesToShow: 3,
+                dots:true,
+                centerMode: true,
+                });
+                });
+        </script>
+        
     </body>
+   
     </html>
