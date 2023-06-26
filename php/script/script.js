@@ -1,51 +1,22 @@
-/* draggable element */
-const item = document.querySelector('.players');
+let draggedItem = null;
 
-item.addEventListener('dragstart', dragStart);
-
-function dragStart(e) {
-    e.dataTransfer.setData('text/plain', e.target.id);
-    setTimeout(() => {
-        e.target.classList.add('hide');
-    }, 0);
+function dragStart(event) {
+  draggedItem = event.target;
+  event.dataTransfer.setData('text/plain', event.target.id);
 }
 
-
-/* drop targets */
-const boxes = document.querySelectorAll('.dropbox');
-
-boxes.forEach(box => {
-    box.addEventListener('dragenter', dragEnter)
-    box.addEventListener('dragover', dragOver);
-    box.addEventListener('dragleave', dragLeave);
-    box.addEventListener('drop', drop);
-});
-
-
-function dragEnter(e) {
-    e.preventDefault();
-    e.target.classList.add('drag-over');
+function dragOver(event) {
+  event.preventDefault();
 }
-
-function dragOver(e) {
-    e.preventDefault();
-    e.target.classList.add('drag-over');
-}
-
-function dragLeave(e) {
-    e.target.classList.remove('drag-over');
-}
-
-function drop(e) {
-    e.target.classList.remove('drag-over');
-
-    // get the draggable element
-    const id = e.dataTransfer.getData('text/plain');
-    const draggable = document.getElementById(id);
-
-    // add it to the drop target
-    e.target.appendChild(draggable);
-
-    // display the draggable element
-    draggable.classList.remove('hide');
-}
+function drop(event) {
+    event.preventDefault();
+    const droppedItemId = event.dataTransfer.getData('text/plain');
+    const droppedItem = document.getElementById(droppedItemId);
+    
+    if (droppedItem) {
+      event.currentTarget.appendChild(droppedItem);
+      draggedItem = null;
+    } else {
+      console.error(`Element with id '${droppedItemId}' not found.`);
+    }
+  }

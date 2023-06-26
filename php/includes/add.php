@@ -35,7 +35,7 @@
                         </div>
             </form>
             <div class="description1 ">
-                <div class="list borders">
+                <div class="list borders"style="height: 100%;font-size: 30px;" >
                     <h3>Liste des classes : </h3>
                         <ul>
                             <li>Buccaneer : 75 HP / 55 ATK</li>
@@ -57,21 +57,21 @@
                 <input type="text" id="inputFaction" name="faction" placeholder="Ajouter nom de la faction">
             </div>
             <div class="gridfaction">
-                <div class="borderfaction">
+                <div style="width: 20%; height: 100%;"class="borderfaction">
                     <div class="factionimg factionimg1">
-                        <img id="f1" style="width: 45px;margin-left: -30px;" src="./images/f1.png" alt="faction">
+                        <img id="f1" style="width: 65px;margin-left: -30px;" src="./images/f1.png" alt="faction">
                         <div class="text-overlay text-overlay1">
                         <p>Les chevaliers de l’aube<br>Buff +5 ATK  et +5 HP</p>
                         </div>
                     </div>  
                     <div class="factionimg factionimg2">
-                        <img id="f2"style="width: 45px;margin-left: -30px;" src="./images/f2.png" alt="faction">
+                        <img id="f2"style="width: 65px;margin-left: -30px;" src="./images/f2.png" alt="faction">
                         <div class="text-overlay text-overlay2">
                         <p>Chevaliers des ténébres<br>Buff +8 ATK et +2 HP</p>
                         </div>
                     </div>  
                     <div class="factionimg factionimg3">
-                        <img id="f3"style="width: 45px;margin-left: -30px;" src="./images/f3.png" alt="faction">
+                        <img id="f3"style="width: 65px;margin-left: -30px;" src="./images/f3.png" alt="faction">
                         <div class="text-overlay text-overlay3">
                         <p>Sentinelles de la lumières<br>Buff +8 HP et + 2 ATK</p>
                         </div>
@@ -83,7 +83,7 @@
           
             <div class="grid8" style="grid-area: area8; margin-left: 10%;">
                 <div class="optionfaction">
-                    <select name="inputclass" id="faction" class="selectperso" style=" width: 40%;">
+                    <select name="inputclass" id="faction" class="selectperso" style=" width: 55%;">
                     <option value="Les chevaliers de l’aube">Les chevaliers de l’aube</option>
                     <option value="Chevaliers des ténébres">Chevaliers des ténébres</option>
                     <option value="Sentinelles de la lumières">Sentinelles de la lumières</option>
