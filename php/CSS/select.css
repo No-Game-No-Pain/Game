@@ -26,6 +26,7 @@
     margin-top: 10px;
     border-radius: 17px;
     background: rgba(0, 0, 0, 0.40);
+    position: relative;
 }
 #team2{
     grid-column-start:  3;
@@ -35,6 +36,7 @@
     margin-top: 10px;
     border-radius: 17px;
     background: rgba(0, 0, 0, 0.40);
+    position: relative;
 }
 #choix{
     grid-column-start:  2;
@@ -97,9 +99,14 @@
 #flexfac{
     display: flex;
     justify-content: center;
+    width: 100%;
+    bottom: 0px;
+    align-items: center;
+    position: absolute;
 
 }
 #startgame img{
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -110,6 +117,8 @@ h2{
     align-self: center;
 }
 .Imprint{
+    font-size: 37px;
+    padding-top: 10px;
     font-family: 'Imprint MT Shadow', sans-serif;
 }
 .rotated{
