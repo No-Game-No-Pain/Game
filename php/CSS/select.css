@@ -117,7 +117,8 @@ h2{
     align-self: center;
 }
 .Imprint{
-    padding-top: 20px;
+    font-size: 37px;
+    padding-top: 10px;
     font-family: 'Imprint MT Shadow', sans-serif;
 }
 .rotated{

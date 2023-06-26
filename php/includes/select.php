@@ -29,9 +29,11 @@
         </div>
         <div id="selecteam2"></div>
     </div>
-
+    <div class="precedent">
+    <a href="#"><img src="" alt="" srcset=""></a>
+    </div>
 
     <div id="startgame">
-        <a href=""><img src="./images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a>
+        <a href="index.php?game"><img src="./images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a>
     </div>
 </div>
