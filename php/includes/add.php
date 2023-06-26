@@ -95,22 +95,68 @@
             <div class="grid10">
                 <div class="background">
                     <h3>Choix de l'Arène :</h3>
-                    <img class="bg"src="./images/castle bridge.png" alt="background">
+                    <!--<img class="bg"src="./images/castle bridge.png" alt="background">-->
+                    
+                            <div class="slider">
+                                <div class="slider__slides">
+                                <div class="slider__slide active">
+                                    <img id="bg1" src="./images/castle bridge.png" alt="background castle" />
+                                </div>
+                                <div class="slider__slide">
+                                    <img id="bg2" src="./images/forest bridge.png" alt="background forest" />
+                                </div>
+                                <div class="slider__slide">
+                                    <img id="bg3" src="./images/sky bridge.png"alt="background sky"  />
+                                </div>
+                                </div>
+                                <div id="nav-button--prev" class="slider__nav-button"></div>
+                                <div id="nav-button--next" class="slider__nav-button"></div>
+                                <div class="slider__nav">
+                                <div class="slider__navlink active"></div>
+                                <div class="slider__navlink"></div>
+                                <div class="slider__navlink"></div>
+                                </div>
+                            </div>
+                            
 
                 </div>
             </div>
     
            
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js">
-                $(document).ready(function(){
-                $('.carousel').click({
-                slidesToShow: 3,
-                dots:true,
-                centerMode: true,
-                });
-                });
+        <script>
+            let slides = document.getElementsByClassName("slider__slide");
+            let navlinks = document.getElementsByClassName("slider__navlink");
+            let currentSlide = 0;
+
+            document.getElementById("nav-button--next").addEventListener("click", () => {
+            changeSlide(currentSlide + 1)
+            });
+            document.getElementById("nav-button--prev").addEventListener("click", () => {
+            changeSlide(currentSlide - 1)
+            });
+
+            function changeSlide(moveTo) {
+                if (moveTo >= slides.length) {moveTo = 0;}
+                if (moveTo < 0) {moveTo = slides.length - 1;}
+                
+                slides[currentSlide].classList.toggle("active");
+                navlinks[currentSlide].classList.toggle("active");
+                slides[moveTo].classList.toggle("active");
+                navlinks[moveTo].classList.toggle("active");
+                
+                currentSlide = moveTo;
+            }
+
+            document.querySelectorAll('.slider__navlink').forEach((bullet, bulletIndex) => {
+                bullet.addEventListener('click', () => {
+                    if (currentSlide !== bulletIndex) {
+                        changeSlide(bulletIndex);
+                    }
+                })
+            })
         </script>
+        
         
     </body>
    
