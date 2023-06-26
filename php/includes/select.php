@@ -18,9 +18,19 @@
             <img class="divided rotated" src="./images/play.png" alt="Bouton play">
         </div>
     </div>
-    <div id="selecteam1"></div>
-    <div id="seleccentral"></div>
-    <div id="selecteam2"></div>
+
+    <div class="dropbox">
+        <div id="selecteam1">
+        </div>
+        <div id="seleccentral">
+            <div class="players">
+                <h5>Je suis un joueur drag and droppable</h5>
+            </div>
+        </div>
+        <div id="selecteam2"></div>
+    </div>
+
+
     <div id="startgame">
         <a href=""><img src="./images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a>
     </div>
