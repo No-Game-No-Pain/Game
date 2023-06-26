@@ -23,8 +23,10 @@
         <div id="selecteam1">
         </div>
         <div id="seleccentral">
-            <div class="players">
-                <h5>Je suis un joueur drag and droppable</h5>
+            <div class="players" draggable="true">
+                <h3>Nom personne</h3>
+                <img src="" alt="Sprite">
+                <h3>Lvl.°</h3>
             </div>
         </div>
         <div id="selecteam2"></div>
