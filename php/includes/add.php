@@ -21,7 +21,7 @@
             </div>
             <div class="input-class">
                 <label for="inputclass" class="borders"> Choisissez votre classe :  </label>
-                <select name="inputclass" id="class" class="selectperso">
+                <select name="inputclass" style="width: 25%;" id="class" class="selectperso">
                     <option value="Mage">Mage</option>
                     <option value="Gunner">Gunner</option>
                     <option value="Cowboy">Cowboy</option>
@@ -81,9 +81,9 @@
                 
             </div>
           
-            <div class="grid8" style="grid-area: area8;">
+            <div class="grid8" style="grid-area: area8; margin-left: 10%;">
                 <div class="optionfaction">
-                    <select name="inputclass" id="faction" class="">
+                    <select name="inputclass" id="faction" class="selectperso" style=" width: 40%;">
                     <option value="Les chevaliers de l’aube">Les chevaliers de l’aube</option>
                     <option value="Chevaliers des ténébres">Chevaliers des ténébres</option>
                     <option value="Sentinelles de la lumières">Sentinelles de la lumières</option>
@@ -121,6 +121,21 @@
 
                 </div>
             </div>
+            <div class="grid11">
+                <img class="nextpage"id="next"src="./images/nextpage.png" alt="next">
+            </div>
+            <div class="grid13">
+            <img class="previouspage"id="previous"src="./images/previouspage.png" alt="previous">
+            </div>
+            <div class="grid14">
+            <div class="list-users">
+                <select name="users" style="width: 22%;"id="users" class="selectperso">
+                    <option value="Mage">Eric</option>
+                    <option value="Gunner">Karl</option>
+                    <option value="Cowboy">Islem</option>
+                </select>
+            </div>
+                </div>
     
            
         </div>

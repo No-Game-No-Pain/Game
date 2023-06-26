@@ -14,15 +14,16 @@ body{
     margin-right: auto;
     margin-left: auto;
     display: grid;
-    grid-auto-rows:  50px,50px,300px,100px,100px;
+    grid-auto-rows:  50px,50px,300px,100px,100px,50px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 15px;
     grid-template-areas:
     "area1 area1  area1"
-    "area2 area6 area6"
+    "area2 area14 area6"
     "area3 area7 area8 "
     "area4 . area9"
     "area5 . area10"
+    "area13 area12 area11"
     ;
     
 }
@@ -67,8 +68,9 @@ body{
     border-radius: 5px;
     border-block-color: #b5c18a;
     margin-left: 15px;
-    width: 32%;
+    
     background-color: white;
+    HEIGHT: 20px;
 }
 select option :hover {
     background-color: #b5c18a;
@@ -88,8 +90,8 @@ select option :hover {
     list-style-type: none;
 }
 .input-fraction{
-    grid-area: area6;   
-    margin-left: 40%;
+  grid-area: area6;
+  margin-left: -30%;
    
 }
 #inputFaction{
@@ -338,4 +340,23 @@ padding-top: 66%;
   height: 12px;
   width: 12px;
 }
+}
+
+
+
+
+.grid11{
+  grid-area: area11;
+  margin-left: auto;
+  margin-top: 20%;
+}
+.grid13{
+  grid-area: area13;
+  margin-right: auto;
+  margin-top: 20%;
+}
+.grid14{
+  grid-area: area14;
+    margin-left: -120px;
+    margin-top: 3px;
 }
