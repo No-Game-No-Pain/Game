@@ -147,7 +147,7 @@ h1{
 /* paragraph */
 .paragraph{
     position: absolute;
-    transform: translate(465px, 110px);
+    transform: translate(400px, 110px);
     display: flex;
     font-size: 34px;
     font-family: imprint mt shadow;
