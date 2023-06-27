@@ -40,7 +40,7 @@ body{
   
   .input-name {
     grid-area: area2;
-    margin-left: -500px;
+    margin-left: -462px;
   }
   .borders{
     border-color: rgba(0, 0, 0, 0.043) ;
@@ -65,8 +65,8 @@ body{
 }
 .input-class{
     grid-area: area3; 
-    margin-left: -499px;
     margin-top: 40px;
+    margin-left: -447px;
 }
 .selectperso{
     border-radius: 5px;
