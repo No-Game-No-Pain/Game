@@ -1,4 +1,4 @@
-<div>
+<div id="game">
   <div id="equipe1"></div>
   <div id="equipe2"></div>
   <div id="historique"></div>

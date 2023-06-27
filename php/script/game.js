@@ -66,30 +66,30 @@
       
           // Effectue une attaque entre l'attaquant et la cible
           // Effectue une attaque entre l'attaquant et la cible
-      function effectuerAttaque(attaquant, cible) {
-        var equipe2;
-        var equipe1;
-        // Logique pour effectuer l'attaque
-        let attaque = {
-          attaquant: attaquant,
-          cible: cible
-        };
-      
-        cible.vie -= attaquant.attaque;
-      
-        if (cible.vie <= 0) {
-          // La cible est vaincue, on la retire de son équipe
-          if (equipe1.includes(cible)) {
-            equipe1.splice(equipe1.indexOf(cible), 1);
-          } else {
-            equipe2.splice(equipe2.indexOf(cible), 1);
-          }
-        }
-      
-        historiqueAttaques.push(attaque);
-      
-        cible.mettreAJourBarreDeVie(); // Met à jour la barre de vie de la cible
-      }
+// Effectue une attaque entre l'attaquant et la cible
+function effectuerAttaque(attaquant, cible) {
+    // Logique pour effectuer l'attaque
+    let attaque = {
+      attaquant: attaquant,
+      cible: cible
+    };
+  
+    let pourcentageAttaque = Math.floor(Math.random() * 21) + 10; // Valeur aléatoire entre 10 et 30
+    let degats = Math.floor(attaquant.attaque * (pourcentageAttaque / 100));
+  
+    cible.vie -= degats;
+  
+    if (equipe1.includes(cible)) {
+      equipe1.splice(equipe1.indexOf(cible), 1);
+    } else {
+      equipe2.splice(equipe2.indexOf(cible), 1);
+    }
+  
+    historiqueAttaques.push(attaque);
+  
+    cible.mettreAJourBarreDeVie(); // Met à jour la barre de vie de la cible
+  }
+  
       
       
           // Affiche l'historique des attaques dans le HTML
@@ -110,83 +110,68 @@
           afficherHistoriqueAttaques();
       
           function demarrerCombat() {
-        var equipe1Copy = equipe1.slice(); // Copie de l'équipe 1
-        var equipe2Copy = equipe2.slice(); // Copie de l'équipe 2
-      
-        // Mélange aléatoire des deux équipes
-        var equipe1Shuffled = shuffle(equipe1Copy);
-        var equipe2Shuffled = shuffle(equipe2Copy);
-      
-        var equipe1Index = 0; // Indice du joueur actif de l'équipe 1
-        var equipe2Index = 0; // Indice du joueur actif de l'équipe 2
-      
-        var equipeQuiAttaque = equipe1Shuffled;
-        var equipeCible = equipe2Shuffled;
-      
-        // Boucle jusqu'à ce que toutes les entités d'une équipe aient une vie <= 0
-        while (equipe1.length > 0 && equipe2.length > 0) {
-          // Attaque de l'équipe 1
-          if (equipeQuiAttaque === equipe1Shuffled) {
-            var attaquant = equipe1Shuffled[equipe1Index];
-            var cible = equipeCible[Math.floor(Math.random() * equipeCible.length)];
-      
-            // Effectuer l'attaque
-            effectuerAttaque(attaquant, cible);
-      
-            // Vérifier si la cible est vaincue
-            if (cible.vie <= 0) {
-              // Retirer la cible de son équipe
-              var equipeCibleIndex = equipeCible.indexOf(cible);
-              if (equipeCibleIndex !== -1) {
-                equipeCible.splice(equipeCibleIndex, 1);
+            var equipe1Copy = equipe1.slice(); // Copie de l'équipe 1
+            var equipe2Copy = equipe2.slice(); // Copie de l'équipe 2
+          
+            // Mélange aléatoire des deux équipes
+            var equipe1Shuffled = shuffle(equipe1Copy);
+            var equipe2Shuffled = shuffle(equipe2Copy);
+          
+            var equipe1Index = 0; // Indice du joueur actif de l'équipe 1
+            var equipe2Index = 0; // Indice du joueur actif de l'équipe 2
+          
+            var equipeQuiAttaque = equipe1Shuffled;
+            var equipeCible = equipe2Shuffled;
+          
+            // Boucle jusqu'à ce que tous les joueurs d'une équipe aient une vie <= 0
+            while (!equipeTousMorts(equipe1Shuffled) && !equipeTousMorts(equipe2Shuffled)) {
+              // Attaque de l'équipe qui attaque
+              var attaquant = equipeQuiAttaque === equipe1Shuffled ? equipe1Shuffled[equipe1Index] : equipe2Shuffled[equipe2Index];
+              var cible = equipeCible[Math.floor(Math.random() * equipeCible.length)];
+          
+              // Effectuer l'attaque
+              effectuerAttaque(attaquant, cible, equipeQuiAttaque, equipeCible);
+          
+              // Vérifier si la cible est vaincue
+              if (cible.vie <= 0) {
+                // Retirer la cible de son équipe
+                var equipeCibleIndex = equipeCible.indexOf(cible);
+                if (equipeCibleIndex !== -1) {
+                  equipeCible.splice(equipeCibleIndex, 1);
+                }
               }
-            }
-      
-            // Passer au joueur suivant de l'équipe 1
-            equipe1Index = (equipe1Index + 1) % equipe1Shuffled.length;
-      
-            // Changer l'équipe qui attaque et l'équipe cible
-            equipeQuiAttaque = equipe2Shuffled;
-            equipeCible = equipe1Shuffled;
-          }
-          // Attaque de l'équipe 2
-          else {
-            var attaquant = equipe2Shuffled[equipe2Index];
-            var cible = equipeCible[Math.floor(Math.random() * equipeCible.length)];
-      
-            // Effectuer l'attaque
-            effectuerAttaque(attaquant, cible);
-      
-            // Vérifier si la cible est vaincue
-            if (cible.vie <= 0) {
-              // Retirer la cible de son équipe
-              var equipeCibleIndex = equipeCible.indexOf(cible);
-              if (equipeCibleIndex !== -1) {
-                equipeCible.splice(equipeCibleIndex, 1);
+          
+              // Passer au joueur suivant de l'équipe qui attaque
+              if (equipeQuiAttaque === equipe1Shuffled) {
+                equipe1Index = (equipe1Index + 1) % equipe1Shuffled.length;
+              } else {
+                equipe2Index = (equipe2Index + 1) % equipe2Shuffled.length;
               }
+          
+              // Changer l'équipe qui attaque et l'équipe cible
+              var tempEquipeQuiAttaque = equipeQuiAttaque;
+              equipeQuiAttaque = equipeCible;
+              equipeCible = tempEquipeQuiAttaque;
+          
+              // Afficher l'historique des attaques à chaque tour de boucle
+              afficherHistoriqueAttaques();
             }
-      
-            // Passer au joueur suivant de l'équipe 2
-            equipe2Index = (equipe2Index + 1) % equipe2Shuffled.length;
-      
-            // Changer l'équipe qui attaque et l'équipe cible
-            equipeQuiAttaque = equipe1Shuffled;
-            equipeCible = equipe2Shuffled;
+          
+            // Afficher les équipes victorieuses
+            if (equipeTousMorts(equipe1Shuffled)) {
+              console.log("Équipe 2 gagne !");
+            } else {
+              console.log("Équipe 1 gagne !");
+            }
           }
           
-      
-          // Afficher l'historique des attaques à chaque tour de boucle
-          afficherHistoriqueAttaques();
-        }
-      
-        // Afficher les équipes victorieuses
-        if (equipe1.length > 0) {
-          console.log("ALBREAKK!");
-        } else {
-          console.log("ALBREAK !");
-        }
-      }
-      
+          // Vérifie si tous les joueurs d'une équipe ont une vie inférieure ou égale à zéro
+          function equipeTousMorts(equipe) {
+            return equipe.every(function(joueur) {
+              return joueur.vie <= 0;
+            });
+          }
+          
       // Fonction de mélange aléatoire (algorithme de Fisher-Yates)
       function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -202,4 +187,3 @@
       
         return array;
       }
-      
