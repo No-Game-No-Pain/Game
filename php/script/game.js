@@ -12,7 +12,7 @@ var equipe2 = [
   { nom: "Entité 7", classe: "Mage", vie: 75, attaque: 35 },
   { nom: "Entité 8", classe: "Archer", vie: 85, attaque: 28 },
   { nom: "Entité 9", classe: "Voleur", vie: 60, attaque: 17 },
-  { nom: "Entité 10", classe: "Paladin", vie: 130, attaque: 20 }
+  { nom: "Entité 10", classe: "Paladin", vie: 100, attaque: 20 }
 ];
 
 
@@ -71,6 +71,9 @@ function creerElementEntite(entite) {
 // Effectue une attaque entre l'attaquant et la cible
 function effectuerAttaque(attaquant, cible) {
   if (attaquant && cible && attaquant.attaque !== undefined && cible.vie !== undefined) {
+    if (cible.vie <= 0) {
+      return; // Ignore l'attaque si la cible est déjà vaincue
+    }
     let attaque = {
       attaquant: attaquant,
       cible: cible
@@ -85,6 +88,9 @@ function effectuerAttaque(attaquant, cible) {
       equipe1.splice(equipe1.indexOf(cible), 1);
     } else {
       equipe2.splice(equipe2.indexOf(cible), 1);
+    }
+    if (cible.vie <= 0) {
+      cible.vie = 0;
     }
 
     historiqueAttaques.push(attaque);
