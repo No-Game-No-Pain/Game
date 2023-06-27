@@ -92,7 +92,7 @@ function effectuerAttaque(attaquant, cible) {
     if (cible.mettreAJourBarreDeVie) {
       cible.mettreAJourBarreDeVie(); // Met à jour la barre de vie de la cible si la méthode existe
     }
-  }
+  } setInterval(1000);
 }
 
 
@@ -127,8 +127,23 @@ function demarrerCombat() {
   var equipeQuiAttaque = equipe1Shuffled;
   var equipeCible = equipe2Shuffled;
 
-  // Boucle jusqu'à ce que tous les joueurs d'une équipe aient une vie <= 0
-  while (!equipeTousMorts(equipe1Shuffled) && !equipeTousMorts(equipe2Shuffled)) {
+  // Fonction pour effectuer une attaque à intervalles réguliers
+  var intervalID = setInterval(function() {
+    // Vérifier si tous les joueurs d'une équipe sont morts
+    if (equipeTousMorts(equipe1Shuffled) || equipeTousMorts(equipe2Shuffled)) {
+      // Arrêter l'exécution de l'attaque à intervalles réguliers
+      clearInterval(intervalID);
+
+      // Afficher les équipes victorieuses
+      if (equipeTousMorts(equipe1Shuffled)) {
+        console.log("Équipe 2 gagne !");
+      } else {
+        console.log("Équipe 1 gagne !");
+      }
+
+      return;
+    }
+
     // Attaque de l'équipe qui attaque
     var attaquant = equipeQuiAttaque === equipe1Shuffled ? equipe1Shuffled[equipe1Index] : equipe2Shuffled[equipe2Index];
     var cible = equipeCible[Math.floor(Math.random() * equipeCible.length)];
@@ -144,12 +159,11 @@ function demarrerCombat() {
         equipeCible.splice(equipeCibleIndex, 1);
       }
     }
-    
+
     // Vérifier si la cible est toujours en vie avant de mettre à jour la barre de vie
     if (cible.vie > 0) {
       cible.mettreAJourBarreDeVie(); // Met à jour la barre de vie de la cible
     }
-    
 
     // Passer au joueur suivant de l'équipe qui attaque
     if (equipeQuiAttaque === equipe1Shuffled) {
@@ -165,15 +179,12 @@ function demarrerCombat() {
 
     // Afficher l'historique des attaques à chaque tour de boucle
     afficherHistoriqueAttaques();
-  }
+  }, 50); // Interval en millisecondes (ici, 1 seconde)
 
-  // Afficher les équipes victorieuses
-  if (equipeTousMorts(equipe1Shuffled)) {
-    console.log("Équipe 2 gagne !");
-  } else {
-    console.log("Équipe 1 gagne !");
-  }
 }
+
+// Démarrer le combat
+demarrerCombat();
 
 // Vérifie si tous les joueurs d'une équipe ont une vie inférieure ou égale à zéro
 function equipeTousMorts(equipe) {
