@@ -17,3 +17,5 @@ COPY ./config/apache.conf /etc/apache2/sites-available/000-default.conf
 COPY ./config/php-config.ini /usr/local/etc/php/conf.d/php-config-overrides.ini
 
 WORKDIR /var/www/
+
+RUN docker-php-ext-install pdo pdo_mysql
