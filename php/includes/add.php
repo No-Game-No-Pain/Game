@@ -1,5 +1,14 @@
+<?php
+include "./includes/connect.php";
+/*$reponse = $conn->query('SELECT * FROM User');
+while ($donnees = $reponse->fetch())
+{
+       echo $donnees['Name'] . '<br />';
+}
+$reponse->closeCursor();*/
 
-    <body class="page1">
+?>
+    <body class="page3">
         <div class="container-add">
                 <div class="mute">
                     <img src="./images/mute.jpg" alt="mute">

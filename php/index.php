@@ -1,5 +1,5 @@
 <?php
-    include "./includes/head.html"; 
+    include "./includes/head.html";
 ?>
 <body>
 <header>
