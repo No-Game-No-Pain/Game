@@ -15,11 +15,11 @@ var equipe2 = [
   { nom: "Entité 10", classe: "Paladin", vie: 100, attaque: 20 }
 ];
 
-
 var historiqueAttaques = [];
 
 var equipe1Index = 0; // Indice de l'entité active de l'équipe 1
 var equipe2Index = 0; // Indice de l'entité active de l'équipe 2
+
 // Affiche les entités de chaque équipe dans le HTML
 function afficherEntites() {
   var equipe1Container = document.getElementById("equipe1");
@@ -42,7 +42,8 @@ function creerElementEntite(entite) {
   entiteElement.classList.add("entite");
 
   var imageElement = document.createElement("img");
-  imageElement.src = "chemin/vers/image/" + entite.classe.toLowerCase() + ".png";
+  imageElement.src =
+    "chemin/vers/image/" + entite.classe.toLowerCase() + ".png";
   entiteElement.appendChild(imageElement);
 
   var nomElement = document.createElement("span");
@@ -72,7 +73,12 @@ function creerElementEntite(entite) {
 
 // Effectue une attaque entre l'attaquant et la cible
 function effectuerAttaque(attaquant, cible) {
-  if (attaquant && cible && attaquant.attaque !== undefined && cible.vie !== undefined) {
+  if (
+    attaquant &&
+    cible &&
+    attaquant.attaque !== undefined &&
+    cible.vie !== undefined
+  ) {
     if (cible.vie <= 0) {
       return; // Ignore l'attaque si la cible est déjà vaincue
     }
@@ -100,9 +106,8 @@ function effectuerAttaque(attaquant, cible) {
     if (cible.mettreAJourBarreDeVie) {
       cible.mettreAJourBarreDeVie(); // Met à jour la barre de vie de la cible si la méthode existe
     }
-  } setInterval(1000);
+  }
 }
-
 
 // Affiche l'historique des attaques dans le HTML
 function afficherHistoriqueAttaques() {
@@ -111,7 +116,8 @@ function afficherHistoriqueAttaques() {
 
   historiqueAttaques.forEach(function(attaque) {
     var attaqueElement = document.createElement("div");
-    attaqueElement.textContent = attaque.attaquant.nom + " attaque " + attaque.cible.nom;
+    attaqueElement.textContent =
+      attaque.attaquant.nom + " attaque " + attaque.cible.nom;
     historiqueContainer.appendChild(attaqueElement);
   });
 }
@@ -140,7 +146,10 @@ function demarrerCombat() {
   // Fonction pour effectuer une attaque à intervalles réguliers
   var intervalID = setInterval(function() {
     // Vérifier si tous les joueurs d'une équipe sont morts
-    if (equipeTousMorts(equipe1Shuffled) || equipeTousMorts(equipe2Shuffled)) {
+    if (
+      equipeTousMorts(equipe1Shuffled) ||
+      equipeTousMorts(equipe2Shuffled)
+    ) {
       // Arrêter l'exécution de l'attaque à intervalles réguliers
       clearInterval(intervalID);
 
@@ -155,37 +164,50 @@ function demarrerCombat() {
     }
 
     // Attaque de l'équipe qui attaque
-    var attaquant, cible;
+var attaquant, cible;
 
-    if (equipeQuiAttaque === equipe1Shuffled) {
-      attaquant = equipe1Shuffled[equipe1Index];
-      cible = equipe2Shuffled[equipe2Index];
-    } else {
-      attaquant = equipe2Shuffled[equipe2Index];
-      cible = equipe1Shuffled[equipe1Index];
-    }
+if (equipeQuiAttaque === equipe1Shuffled) {
+  attaquant = equipe1Shuffled[equipe1Index];
+  cible = equipe2Shuffled[equipe2Index];
+} else {
+  attaquant = equipe2Shuffled[equipe2Index];
+  cible = equipe1Shuffled[equipe1Index];
+}
 
-    // Effectuer l'attaque
-    effectuerAttaque(attaquant, cible);
+// Effectuer l'attaque
+effectuerAttaque(attaquant, cible);
 
-    // Passer au joueur suivant de l'équipe qui attaque
-    if (equipeQuiAttaque === equipe1Shuffled) {
-      equipe1Index = (equipe1Index + 1) % equipe1Shuffled.length;
-    } else {
-      equipe2Index = (equipe2Index + 1) % equipe2Shuffled.length;
-    }
+// Passer au joueur suivant de l'équipe qui attaque
+if (equipeQuiAttaque === equipe1Shuffled) {
+  equipe1Index = (equipe1Index + 1) % equipe1Shuffled.length;
+} else {
+  equipe2Index = (equipe2Index + 1) % equipe2Shuffled.length;
+}
 
-    // Changer l'équipe qui attaque et l'équipe cible
-    var tempEquipeQuiAttaque = equipeQuiAttaque;
-    equipeQuiAttaque = equipeCible;
-    equipeCible = tempEquipeQuiAttaque;
+// Changer l'équipe qui attaque et l'équipe cible
+var tempEquipeQuiAttaque = equipeQuiAttaque;
+equipeQuiAttaque = equipeCible;
+equipeCible = tempEquipeQuiAttaque;
+
+// Vérifier si tous les joueurs d'une équipe ont attaqué
+if (
+  equipe1Index === 0 &&
+  equipe2Index === 0 &&
+  equipeQuiAttaque === equipe1Shuffled
+) {
+  // Mélanger aléatoirement les équipes
+  equipe1Shuffled = shuffle(equipe1Shuffled);
+  equipe2Shuffled = shuffle(equipe2Shuffled);
+
+  // Choisir de manière aléatoire l'attaquant et la cible pour le prochain tour
+  equipe1Index = Math.floor(Math.random() * equipe1Shuffled.length);
+  equipe2Index = Math.floor(Math.random() * equipe2Shuffled.length);
+}
 
     // Afficher l'historique des attaques à chaque tour de boucle
     afficherHistoriqueAttaques();
   }, 50); // Interval en millisecondes (ici, 1 seconde)
 }
-
-
 
 // Vérifie si tous les joueurs d'une équipe ont une vie inférieure ou égale à zéro
 function equipeTousMorts(equipe) {
