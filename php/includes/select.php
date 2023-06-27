@@ -45,9 +45,9 @@ include "./includes/connect.php";
                 while ($donnees = $reponse->fetch())
                 {
                     echo '<div class="players" class="drag-item" draggable="true" ondragstart="dragStart(event)" id="item'.$donnees['ID_User'].'">';
-                    echo '<h4>'.$donnees['Name'].'</h4>';
-                    echo '<h4>'.$donnees['ID_Class'].'</h4>';
-                    echo '<h4>Lvl.'.$donnees['Level'].'</h4>';
+                    echo '<h3 id="playername">'.$donnees['Name'].'</h3>';
+                    echo '<h4 id="playerclass">'.$donnees['ID_Class'].'</h4>';
+                    echo '<h4 id="playerlvl">Lvl.'.$donnees['Level'].'</h4>';
                     echo '</div>';
                 }
                 $reponse->closeCursor();
