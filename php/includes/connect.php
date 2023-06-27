@@ -1,11 +1,8 @@
-<?php
-$dsn = 'mysql:host=localhost;dbname=EdenAttack;charset=utf8';
-$username = 'root';
-$password = 'root';
-
-try {
-    $pdo = new PDO($dsn, $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo 'Erreur de connexion : ' . $e->getMessage();
-}
+<?php  
+$servername = 'db';     
+$username = 'root';     
+$password = 'root';     
+$database = 'EdenAttack';      
+$conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);    
+ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ ?> 
