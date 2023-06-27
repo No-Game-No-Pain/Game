@@ -135,6 +135,8 @@ function demarrerCombat() {
   var equipeQuiAttaque = equipe1Shuffled;
   var equipeCible = equipe2Shuffled;
 
+  var intervalID;
+
   // Fonction pour effectuer une attaque à intervalles réguliers
   var intervalID = setInterval(function() {
     // Vérifier si tous les joueurs d'une équipe sont morts
