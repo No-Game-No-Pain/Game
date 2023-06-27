@@ -1,6 +1,6 @@
 <?php
 include "./includes/connect.php";
-/*$reponse = $conn->query('SELECT * FROM User');
+/* $reponse = $conn->query('SELECT `Name` FROM `User`;');
 while ($donnees = $reponse->fetch())
 {
        echo $donnees['Name'] . '<br />';
@@ -8,7 +8,7 @@ while ($donnees = $reponse->fetch())
 $reponse->closeCursor();*/
 
 ?>
-    <body class="page3">
+    <body class="page2">
         <div class="container-add">
                 <div class="mute">
                     <img src="./images/mute.jpg" alt="mute">
@@ -33,9 +33,16 @@ $reponse->closeCursor();*/
                 <div class="grid14">
                     <div class="list-users">
                         <select name="users" style="width: 22%;" id="users" class="selectperso">
-                            <option value="Mage">Eric</option>
-                            <option value="Gunner">Karl</option>
-                            <option value="Cowboy">Islem</option>
+                        <?php
+                        $reponse = $conn->query('SELECT `Name` FROM `User`;');
+                        while ($donnees = $reponse->fetch())
+                        {
+                            
+                                echo '<option value="' . $donnees['Name'] . '">' . $donnees['Name']  . '</option>';
+                            
+                        }
+                        $reponse->closeCursor(); 
+                        ?>
                         </select>
                     </div>
                 </div>
