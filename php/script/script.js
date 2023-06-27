@@ -20,3 +20,4 @@ function drop(event) {
       console.error(`Element with id '${droppedItemId}' not found.`);
     }
   }
+
