@@ -1,5 +1,5 @@
 
-    <body class="page1">
+    <body class="page3">
         <div class="container-add">
                 <div class="mute">
                     <img src="./images/mute.jpg" alt="mute">
