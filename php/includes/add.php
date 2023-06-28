@@ -1,6 +1,6 @@
 <?php
 include "./includes/connect.php";
-/* $reponse = $conn->query('SELECT `Name` FROM `User`;');
+/* $reponse = $conn->query('INSERT INTO `User` (`ID_User`, `Name`, `Level`, `Team`, `ID_Class`, `ID_Personalized`) VALUES (NULL, 'Morgan', '2', NULL, '3', '2');');
 while ($donnees = $reponse->fetch())
 {
        echo $donnees['Name'] . '<br />';
@@ -14,32 +14,31 @@ $reponse->closeCursor();*/
                     <img src="./images/mute.jpg" alt="mute">
                 </div>
     <div class="formcontainer">
-        <form method="post" action="/add.php" enctype="multipart/form-data">
+        <form method="post" action="" enctype="multipart/form-data">
         
                 <div class="input-name">
                     <label for="inputField" class="borders"> Nom du joueur :  </label>
                     <input type="text" id="inputField" name="name" placeholder="Ajouter votre nom">
                 </div>
                 <div class="input-class">
-                    <label for= "class" class="borders"> Choisissez votre classe :  </label>
-                    <select name="inputclass" style="width: 25%;" id="class" class="selectperso">
-                        <option value="Mage">Mage</option>
-                        <option value="Gunner">Gunner</option>
-                        <option value="Cowboy">Cowboy</option>
-                        <option value="Hazel">Hazel</option>
-                        <option value="Cyber">Cyber</option>
-                    </select>
+                    <label for="class" class="borders"> Choisissez votre classe : </label>
+                        <select name="inputclass" style="width: 25%;" id="class" class="selectperso">
+                            <option value="1">Buccaneer</option>
+                            <option value="2">Mage</option>
+                            <option value="3">Gunner</option>
+                            <option value="4">Cowboy</option>
+                            <option value="5">Hazel</option>
+                            <option value="6">Cyber</option>
+                        </select>
                 </div>
                 <div class="grid14">
                     <div class="list-users">
                         <select name="users" style="width: 22%;" id="users" class="selectperso">
                         <?php
-                        $reponse = $conn->query('SELECT `Name` FROM `User`;');
+                        $reponse = $conn->query('SELECT * FROM `User`;');
                         while ($donnees = $reponse->fetch())
                         {
-                            
-                                echo '<option value="' . $donnees['Name'] . '">' . $donnees['Name']  . '</option>';
-                            
+                                echo '<option value="' . $donnees['ID_User'] . '">' . $donnees['Name']  . '</option>'; 
                         }
                         $reponse->closeCursor(); 
                         ?>
@@ -47,11 +46,34 @@ $reponse->closeCursor();*/
                     </div>
                 </div>
                 <div class ='button1'>
-                        <button type="submit" value="add" id="adduser" class="add borders" >Ajouter</button>
-                        <button type="submit" value="remove" id="removeuser" class="remove borders">Supprimer</button>
+                        <button type="submit" value="add" id="adduser" class="add borders" name="ADD" >Ajouter</button>
+                        <button type="submit" value="remove" id="removeuser" class="remove borders" name="REMOVE">Supprimer</button>
                 </div>
-</form>
+            </form>
 </div>
+<?php
+if (isset($_POST['ADD'])) {
+    $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : null;
+    $selectclass = isset($_POST['inputclass']) && !empty($_POST['inputclass']) ? $_POST['inputclass'] : null;
+
+    if ($name && $selectclass) {
+        $sql = "INSERT INTO `User` (`Name`, `Level`, `Team`, `ID_Class`, `ID_Personalized`) VALUES (:name, '1', NULL, :clas, '1')";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':clas', $selectclass);
+      
+        // Exécution de la requête
+        $stmt->execute();
+    }
+}
+elseif (isset($_POST['REMOVE']) && isset($_POST['users']) && !empty($_POST['users'])) {
+    $selectedUser = $_POST['users'];
+    $sql = "DELETE FROM `User` WHERE ID_User = :userId";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':userId', $selectedUser);
+    $stmt->execute();
+}
+?>
             
                 
            
@@ -74,10 +96,10 @@ $reponse->closeCursor();*/
                 </div>
             </div>
             <div class="form2"style= "margin-right: 86px;">
-            <form method="post" action="/add.php" enctype="multipart/form-data">
+            <form method="post" action="" enctype="multipart/form-data">
                 <div class="input-fraction">
                     <label for="inputFaction" class="borders"> Nom de la faction :  </label>
-                    <input type="text" id="inputFaction" name="faction" placeholder="Ajouter nom de la faction">
+                    <input type="text" id="inputFaction" name="factionpersonalized" placeholder="Ajouter nom de la faction">
                 </div>
                 <div class="gridfaction">
                     <div style="width: 20%; height: 100%;" class="borderfaction">
@@ -106,20 +128,44 @@ $reponse->closeCursor();*/
           
                 <div class="grid8" style="grid-area: area8; margin-left: 210px;">
                 <div class="optionfaction">
-                    <select name="inputclass" id="faction" class="selectperso" style="width: 300px;">
-                    <option value="Les chevaliers de l’aube">Les chevaliers de l’aube</option>
-                    <option value="Chevaliers des ténébres">Chevaliers des ténébres</option>
-                    <option value="Sentinelles de la lumières">Sentinelles de la lumières</option>
+                    <select name="inputfaction" id="faction" class="selectperso" style="width: 300px;">
+                        <option value="1">Les chevaliers de l’aube</option>
+                        <option value="2">Chevaliers des ténébres</option>
+                        <option value="3">Sentinelles de la lumières</option>
                     </select>
                 </div>
                 <div class ='button' style ="margin-top: 113px;">
-                        <button type="submit" value="add" id="addfraction" class="add borders" >Ajouter</button>
-                        <button type="submit" value="remove" id="removefraction" class="remove borders">Supprimer</button>
+                        <button type="submit" value="addfaction" name="addfaction" id="addfraction" class="add borders" >Ajouter</button>
+                        <button type="submit" value="removefaction" name="removefaction" id="removefraction" class="remove borders">Supprimer</button>
                         </div>
                         
                 </div>
         </form>
         </div>
+
+<?php
+        if (isset($_POST['addfaction'])) {
+            $namefaction = isset($_POST['factionpersonalized']) ? htmlspecialchars($_POST['factionpersonalized']) : null;
+            $inputfaction = isset($_POST['inputfaction']) && !empty($_POST['inputfaction']) ? $_POST['inputfaction'] : null;
+
+            if ($namefaction && $inputfaction) {
+                $sql = "INSERT INTO `Personalized` (`Name_Personalized`, `ID_Faction`) VALUES (:namef,:idfaction)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':namef', $namefaction);
+                $stmt->bindParam(':idfaction', $inputfaction);
+      
+        // Exécution de la requête
+        $stmt->execute();
+    }
+}
+if (isset($_POST['removefaction']) && isset($_POST['factionpersonalized']) && !empty($_POST['factionpersonalized'])) {
+    $factionpersonalized = $_POST['factionpersonalized'];
+    $sql = "DELETE FROM `Personalized` WHERE Name_Personalized = :namefaction";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':namefaction', $factionpersonalized);
+    $stmt->execute();
+}
+?>
             
             
             <div class="grid10">
@@ -150,10 +196,15 @@ $reponse->closeCursor();*/
                 </div>
             </div>
             <div class="grid11">
+                <a href="index.php?select">
                 <img class="nextpage" id="next" src="./images/nextpage.png" alt="next">
+                </a>
             </div>
             <div class="grid13">
+                
+                <a href="http://localhost:8000/">
                 <img class="previouspage" id="previous" src="./images/previouspage.png" alt="previous">
+                </a>
             </div>
             
     
