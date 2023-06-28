@@ -76,5 +76,5 @@ include "./includes/connect.php";
             </div>
         </div>
     <a href="index.php?add" id="returnbtn"><img src="./images/previouspage.png" alt="Page précédente"></a>
-    <a href="index.php?game" onclick="submitForm()" id="startgame"><img src="./images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a>
+    <a href="index.php?game" onclick="submitForm('myForm')" id="startgame"><img src="./images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a>
 </div>
