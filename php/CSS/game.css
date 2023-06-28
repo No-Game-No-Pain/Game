@@ -1,6 +1,6 @@
 #game{
     height: 100vh;
-    background-image: url(../images/sky\ bridge.png);
+    background-image: url(../images/skybridge.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -13,4 +13,28 @@
     background: rgba(217, 217, 217, 0.70);
     position: fixed;
     bottom: 0px;
+}
+.entite {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.entite img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+.entite .nom {
+  font-weight: bold;
+}
+.entite .vie {
+  width: 100px;
+  height: 10px;
+  background-color: lightgray;
+  margin-top: 5px;
+}
+.entite .vie span {
+  display: block;
+  height: 100%;
+  background-color: green;
 }
