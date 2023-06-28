@@ -4,7 +4,7 @@
     background-size: cover;
     background-attachment: fixed;
     background-position-x: center;
-    overflow: hidden;
+    overflow: auto !important;
 }
 .container-add{
     width: 100%;
@@ -273,8 +273,8 @@ padding-top: 66%;
 }
 
 .slider__slide img {
-  width: 110%;
-  margin-top: -30px;
+  width: 125%;
+  
 }
 
 .slider__nav-button {
