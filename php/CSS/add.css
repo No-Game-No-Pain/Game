@@ -1,4 +1,4 @@
-body{
+.page2{
     background-image: url(../images/td_landscape_mountains_sf2x.png)!important;
     background-repeat: no-repeat;
     background-size: cover;
@@ -376,7 +376,7 @@ padding-top: 66%;
 }
 .grid14{
   grid-area: area14;
-  margin-left: 80px;
+  margin-left: 90px;
   margin-top: -110px;
 }
 .formcontainer{
