@@ -9,7 +9,7 @@
 /* Display grid */
 
 #bgselect{
-    background-image: url(../images/backselec.png);
+    background-image: url(../images/backselec.png) ;
     height: 100vh;
     display: grid  !important;
     grid-template-columns: 30% 30% 30%;
@@ -57,40 +57,32 @@
 }
 
 /*Display grid du display grid*/
-.dropbox{
-    position: absolute;
-    height: 100vh;
-    width: 100%;
-    display: grid  !important;
-    grid-template-columns: 30% 30% 30%;
-    grid-template-rows: 9% 9% 53% 12%;
-    column-gap:57px ;
-    row-gap: 47px;
-    justify-content: center;
-}
 #seleccentral{ 
-    grid-column-start:  2;
-    grid-column-end:  3;
-    grid-row-start: 2 ;
-    grid-row-end:4 ;
+    height: 642px;
+    width: 30%;
     border-radius: 17px;
     background: rgba(0, 0, 0, 0.40);
+    position: absolute;
+    align-items: center;
 }
 #selecteam1{
-    grid-column-start:  1;
-    grid-column-end:  2;
-    grid-row-start: 3 ;
-    grid-row-end:5 ;
+    height: 671px;
+    width: 30%;
     border-radius: 17px;
     background: rgba(0, 0, 0, 0.40);
+    position: absolute;
+    left: 38px;
+    top: 269px;
+
 }
 #selecteam2{
-    grid-column-start:  3;
-    grid-column-end:  4;
-    grid-row-start: 3 ;
-    grid-row-end:5 ;
+    height: 671px;
+    width: 30%;
     border-radius: 17px;
     background: rgba(0, 0, 0, 0.40);
+    position: absolute;
+    right: 38px;
+    top: 269px;
 }
 /* Fin display grid et du display grid du display grid */
 
@@ -127,12 +119,8 @@ h2{
     width: 20%;
 }
 .players{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
     width: 100%;
-    height: 65px;
+    height: 80px;
     border-radius: 17px;
     background: rgba(0, 0, 0, 0.40);
     color: white;
@@ -141,4 +129,38 @@ h2{
     position: absolute;
     left: 0;
     bottom: 0;
+}
+.players{
+    display: grid;
+    grid-template-columns: 55% 15% 20%;
+    column-gap: 1%;
+    grid-template-rows: 100%;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    margin-bottom: 10px;
+}
+#playername{
+    grid-column-start:  1;
+    grid-column-end:  2;
+    grid-row-start: 1;
+    grid-row-end:2 ;
+    font-size: 25px;
+}
+#playerclass{
+    grid-column-start:  2;
+    grid-column-end:  3;
+    grid-row-start: 1 ;
+    grid-row-end:2 ;
+}
+#playerlvl{
+    grid-column-start:  3;
+    grid-column-end:  4;
+    grid-row-start: 1 ;
+    grid-row-end:2 ;
+    font-size: 25px;
+}
+.imgclass{
+    height: 75px;
+    width: auto;
 }
