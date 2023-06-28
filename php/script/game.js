@@ -32,7 +32,7 @@ function afficherEntites() {
   var equipe2Container = document.getElementById("equipe2");
 
   equipe1.forEach(function(entite) {
-    var entiteElement = creerElementEntite2(entite);
+    var entiteElement = creerElementEntite(entite);
     equipe1Container.appendChild(entiteElement);
   });
 
@@ -49,7 +49,7 @@ function creerElementEntite(entite) {
 
   var imageElement = document.createElement("img");
   imageElement.src =
-    "chemin/vers/image/" + entite.classe.toLowerCase() + ".png";
+    "./images/buccaneer" + ".png";
   entiteElement.appendChild(imageElement);
 
   var nomElement = document.createElement("span");
@@ -64,38 +64,6 @@ function creerElementEntite(entite) {
   vieElement.appendChild(vieRemplieElement);
   entiteElement.appendChild(vieElement);
 
-  // Fonction pour mettre à jour la barre de vie
-  function mettreAJourBarreDeVie() {
-    vieRemplieElement.style.width = (entite.vie / 100) * 100 + "%";
-  }
-
-  // Définir une propriété sur l'entité pour mettre à jour la barre de vie
-  entite.mettreAJourBarreDeVie = mettreAJourBarreDeVie;
-
-  return entiteElement;
-}
-function creerElementEntite2(entite) {
-  var entiteElement = document.createElement("div");
-  entiteElement.classList.add("entite");
-
-  var nomElement = document.createElement("span");
-  nomElement.classList.add("nom");
-  nomElement.textContent = entite.nom;
-  entiteElement.appendChild(nomElement);
-  
-
-  var vieElement = document.createElement("div");
-  vieElement.classList.add("vie");
-  var vieRemplieElement = document.createElement("span");
-  vieRemplieElement.style.width = (entite.vie / 100) * 100 + "%";
-  vieElement.appendChild(vieRemplieElement);
-  entiteElement.appendChild(vieElement);
-
-  var imageElement = document.createElement("img");
-  imageElement.src =
-    "chemin/vers/image/" + entite.classe.toLowerCase() + ".png";
-  entiteElement.appendChild(imageElement);
-  
   // Fonction pour mettre à jour la barre de vie
   function mettreAJourBarreDeVie() {
     vieRemplieElement.style.width = (entite.vie / 100) * 100 + "%";
