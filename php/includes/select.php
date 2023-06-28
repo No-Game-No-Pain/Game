@@ -37,8 +37,7 @@ include "./includes/connect.php";
     </div>
 
     <div class="dropbox">
-        <div id="selecteam1" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)">
-        </div>
+        <div id="selecteam1" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)"></div>
         <div id="seleccentral" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)">
             <?php
                 $reponse = $conn->query('SELECT * FROM User');
@@ -46,7 +45,24 @@ include "./includes/connect.php";
                 {
                     echo '<div class="players" class="drag-item" draggable="true" ondragstart="dragStart(event)" id="item'.$donnees['ID_User'].'">';
                     echo '<h3 id="playername">'.$donnees['Name'].'</h3>';
-                    echo '<h4 id="playerclass">'.$donnees['ID_Class'].'</h4>';
+                    if ($donnees['ID_Class'] == 1) {
+                        echo '<img class="imgclass" src="../images/Buccaneer.png" alt="Buccaneer">';
+                    }
+                    elseif ($donnees['ID_Class'] == 2) {
+                        echo '<img class="imgclass" src="../images/Mage.png" alt="Mage">';
+                    }
+                    elseif ($donnees['ID_Class'] == 3) {
+                        echo '<img class="imgclass" src="../images/Gunner.png" alt="Gunner">';
+                    }
+                    elseif ($donnees['ID_Class'] == 4) {
+                        echo '<img class="imgclass" src="../images/Cowboy.png" alt="Cowboy">';
+                    }
+                    elseif ($donnees['ID_Class'] == 5) {
+                        echo '<img class="imgclass" src*="../images/Hazel.png" alt="Hazel">';
+                    }
+                    elseif ($donnees['ID_Class'] == 6) {
+                        echo '<img class="imgclass" src="../images/Cyber.png" alt="Cyber">';
+                    }             
                     echo '<h4 id="playerlvl">Lvl.'.$donnees['Level'].'</h4>';
                     echo '</div>';
                 }
@@ -57,7 +73,5 @@ include "./includes/connect.php";
     </div>
 
     <a href="index.php?add" id="returnbtn"><img src="./images/previouspage.png" alt="Page précédente"></a>
-    <div id="startgame">
-        <a href="index.php?game"><img src="../images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a>
-    </div>
+    <a href="index.php?game" id="startgame"><img src="../images/pressstart.png" alt="Appuyez pour lancer le jeu"></a>
 </div>

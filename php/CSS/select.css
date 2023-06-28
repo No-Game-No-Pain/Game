@@ -168,3 +168,7 @@ h2{
     grid-row-end:2 ;
     font-size: 25px;
 }
+.imgclass{
+    height: 55px;
+    width: auto;
+}
