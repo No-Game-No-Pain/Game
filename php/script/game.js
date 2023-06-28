@@ -20,6 +20,12 @@ var historiqueAttaques = [];
 var equipe1Index = 0; // Indice de l'entité active de l'équipe 1
 var equipe2Index = 0; // Indice de l'entité active de l'équipe 2
 
+  // Créer la div pour afficher le résultat du combat
+  var resultatCombatDiv = document.createElement("div");
+  resultatCombatDiv.id = "resultatCombat";
+  document.getElementById("game").appendChild(resultatCombatDiv);
+
+
 // Affiche les entités de chaque équipe dans le HTML
 function afficherEntites() {
   var equipe1Container = document.getElementById("equipe1");
@@ -120,6 +126,11 @@ function afficherHistoriqueAttaques() {
       attaque.attaquant.nom + " attaque " + attaque.cible.nom;
     historiqueContainer.appendChild(attaqueElement);
   });
+
+    // Faire défiler vers le bas pour afficher le dernier élément
+    var dernierElement = historiqueContainer.lastElementChild;
+    dernierElement.scrollIntoView();
+
 }
 
 // Démarrage du combat
@@ -154,11 +165,12 @@ function demarrerCombat() {
       clearInterval(intervalID);
 
       // Afficher les équipes victorieuses
+      var resultatCombat = document.getElementById("resultatCombat");
       if (equipeTousMorts(equipe1Shuffled)) {
-        console.log("Équipe 2 gagne !");
+      resultatCombat.textContent = "Équipe 2 gagne !";
       } else {
-        console.log("Équipe 1 gagne !");
-      }
+       resultatCombat.textContent = "Équipe 1 gagne !";
+}
 
       return;
     }
