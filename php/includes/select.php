@@ -4,7 +4,7 @@ include "./includes/connect.php";
 <div id="bgselect">
     <div id="team1">
         <h2 class="Imprint">Équipe 1</h2>
-        <div id="flexfac">
+        <div id="flexfac" class="slider">
             <img class="divided" src="./images/play.png" alt="Bouton play">
             <?php
             $reponse = $conn->query('SELECT*FROM Personalized');
@@ -25,7 +25,7 @@ include "./includes/connect.php";
         <div id="flexfac">
             <img class="divided" src="./images/play.png" alt="Bouton play">
             <?php
-            $reponse = $conn->query('SELECT*FROM Personalized');
+            $reponse = $conn->query('SELECT*FROM Personalized'); 
             while ($donnees = $reponse->fetch())
             {
                 echo $donnees['Name_Personalized'];
@@ -35,6 +35,8 @@ include "./includes/connect.php";
             <img class="divided rotated" src="./images/play.png" alt="Bouton play">
         </div>
     </div>
+    <a href="index.php?add" id="returnbtn"><img src="./images/previouspage.png" alt="Page précédente"></a>
+    <a href="index.php?game" id="startgame"><img src="./images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a>
 
     <div class="dropbox">
         <div id="selecteam1" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)"></div>
@@ -58,7 +60,7 @@ include "./includes/connect.php";
                         echo '<img class="imgclass" src="../images/Cowboy.png" alt="Cowboy">';
                     }
                     elseif ($donnees['ID_Class'] == 5) {
-                        echo '<img class="imgclass" src*="../images/Hazel.png" alt="Hazel">';
+                        echo '<img class="imgclass" src="../images/Hazel.png" alt="Hazel">';
                     }
                     elseif ($donnees['ID_Class'] == 6) {
                         echo '<img class="imgclass" src="../images/Cyber.png" alt="Cyber">';
@@ -72,6 +74,4 @@ include "./includes/connect.php";
         <div id="selecteam2" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)"></div>
     </div>
 
-    <a href="index.php?add" id="returnbtn"><img src="./images/previouspage.png" alt="Page précédente"></a>
-    <a href="index.php?game" id="startgame"><img src="../images/pressstart.png" alt="Appuyez pour lancer le jeu"></a>
 </div>
