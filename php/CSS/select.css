@@ -56,7 +56,7 @@
     background: rgba(0, 0, 0, 0.40);
 }
 
-/*Display grid du display grid*/
+/* Fin display grid*/
 #seleccentral{ 
     height: 642px;
     width: 30%;
@@ -64,6 +64,7 @@
     background: rgba(0, 0, 0, 0.40);
     position: absolute;
     align-items: center;
+    overflow: auto;
 }
 #selecteam1{
     height: 671px;
@@ -84,7 +85,6 @@
     right: 38px;
     top: 269px;
 }
-/* Fin display grid et du display grid du display grid */
 
 #flexfac{
     display: flex;
@@ -99,6 +99,28 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.caroussel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    width: 300px;
+}
+
+.caroucontent {
+    flex: 0 0 auto;
+    width: 300px; /* Adapter la largeur selon les besoins */
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.flexfac__slide {
+    margin: 0;
+    padding: 10px;
 }
 h2{
     color: white;
@@ -117,6 +139,7 @@ h2{
 .divided{
     height: 20%;
     width: 20%;
+    margin: 10px;
 }
 .players{
     width: 100%;
