@@ -26,7 +26,7 @@ include "./includes/connect.php";
                 </div>
                 <div class="grid14">
                     <div class="list-users">
-                        <select name="users" style="width: 22%;" id="users" class="selectperso">
+                        <select name="users" style="width: 32%;" id="users" class="selectperso">
                         <?php
                         $reponse = $conn->query('SELECT * FROM `User`;');
                         while ($donnees = $reponse->fetch())
