@@ -1,7 +1,7 @@
 <?php
 include "./includes/connect.php";
 ?>
-    <body class="page2" style="overflow: auto;">
+    <body class="page2">
         <div class="container-add">
                 <div class="mute">
                     <img src="./images/mute.jpg" alt="mute">
@@ -89,52 +89,46 @@ elseif (isset($_POST['REMOVE']) && isset($_POST['users']) && !empty($_POST['user
                 </div>
             </div>
             <div class="form2"style= "margin-right: 86px;">
-            <form method="post" action="" enctype="multipart/form-data">
-                <div class="input-fraction">
-                    <label for="inputFaction" class="borders"> Nom de la faction :  </label>
-                    <input type="text" id="inputFaction" name="factionpersonalized" placeholder="Ajouter nom de la faction">
-                </div>
-                <div class="gridfaction">
-                    <div style="width: 20%; height: 100%;" class="borderfaction">
-                        <div class="factionimg factionimg1">
-                            <img id="f1" style="width: 65px;margin-left: -30px;" src="./images/f1.png" alt="faction">
-                            <div class="text-overlay text-overlay1">
-                            <p>Les chevaliers de l’aube<br>Buff +5 ATK  et +5 HP</p>
-                            </div>
-                        </div>  
-                        <div class="factionimg factionimg2">
-                            <img id="f2" style="width: 65px; margin-left: -30px;" src="./images/f2.png" alt="faction">
-                            <div class="text-overlay text-overlay2">
-                            <p>Chevaliers des ténébres<br>Buff +8 ATK et +2 HP</p>
-                            </div>
-                        </div>  
-                        <div class="factionimg factionimg3">
-                            <img id="f3" style=" width: 65px; margin-left: -30px;" src="./images/f3.png" alt="faction">
-                            <div class="text-overlay text-overlay3">
-                            <p>Sentinelles de la lumières<br>Buff +8 HP et + 2 ATK</p>
-                        </div>
+                <form method="post" action="" enctype="multipart/form-data">
+                    <div class="input-fraction">
+                        <label for="inputFaction" class="borders"> Nom de la faction :  </label>
+                        <input type="text" id="inputFaction" name="factionpersonalized" placeholder="Ajouter nom de la faction">
                     </div>
-                </div>  
-                
-            </div>
-                
-          
-                <div class="grid8" style="grid-area: area8; margin-left: 210px;">
-                <div class="optionfaction">
-                    <select name="inputfaction" id="faction" class="selectperso" style="width: 300px;">
-                        <option value="1">Les chevaliers de l’aube</option>
-                        <option value="2">Chevaliers des ténébres</option>
-                        <option value="3">Sentinelles de la lumières</option>
-                    </select>
-                </div>
-                <div class ='button' style ="margin-top: 113px;">
+                    <div class="gridfaction">
+                        <div style="width: 20%; height: 100%;" class="borderfaction f">
+                            <div class="factionimg1 text-overlay1">
+                                <img id="f1" style="width: 20%; margin-left: -85%; margin-top: 5%;" src="./images/f1.png" alt="faction">
+                                <p style="margin-top: -50%;">Les chevaliers de l’aube<br>Buff +5 ATK  et +5 HP</p>
+                            </div>
+                            <br>
+                            <div class="factionimg2 text-overlay2">
+                                <img id="f2" style="width: 20%; margin-left: -85%; margin-top: 5%;" src="./images/f2.png" alt="faction">
+                                <p style="margin-top: -50%;">Chevaliers des ténébres<br>Buff +8 ATK et +2 HP</p>
+                            </div>
+                            <br>
+                            <div class="factionimg3 text-overlay3">
+                                <img id="f3" style="width: 20%; margin-left: -85%; margin-top: 5%;" src="./images/f3.png" alt="faction"> 
+                                <p style="margin-top: -50%;">Sentinelles de la lumières<br>Buff +8 HP et + 2 ATK</p> 
+                            </div> 
+                         </div> 
+                    </div>
+                           
+                    <div class="grid8" style="grid-area: area8; margin-left: 210px;">
+                    <div class="optionfaction">
+                        <select name="inputfaction" id="faction" class="selectperso" style="width: 300px;">
+                            <option value="1">Les chevaliers de l’aube</option>
+                            <option value="2">Chevaliers des ténébres</option>
+                            <option value="3">Sentinelles de la lumières</option>
+                        </select>
+                    </div>
+                    <div class ='button' style ="margin-top: 113px;">
                         <button type="submit" value="addfaction" name="addfaction" id="addfraction" class="add borders" >Ajouter</button>
                         <button type="submit" value="removefaction" name="removefaction" id="removefraction" class="remove borders">Supprimer</button>
-                        </div>
+                    </div>
                         
-                </div>
-        </form>
-        </div>
+                    </div>
+                </form>
+            </div>
 
 <?php
         if (isset($_POST['addfaction'])) {

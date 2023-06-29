@@ -4,7 +4,7 @@
     background-size: cover;
     background-attachment: fixed;
     background-position-x: center;
-    overflow: auto !important;
+    overflow: auto ;
 }
 .container-add{
     width: 100%;
@@ -116,80 +116,43 @@ select option :hover {
     margin-left: 15px;
     width: 32%;
     background-color: white; 
+    
 }
 .gridfaction{
     grid-area: area7;
+    margin-left: -130px;
+    margin-top: 26px;
+}
+.f{
+  display: flex;
+  flex-direction: column;
+  
+}
+.factionimg1{
+  display: flex;
+  flex-direction: column;
+  
+  
+  }
+  .factionimg2{
+    display: flex;
+    flex-direction: column;
+   
     
-    margin-right: 285px;
-    margin-left: -92px;
-    margin-top: 15px;
-}
-.factionimg{
-    position: relative;
-    display: inline-block;
+    }
+    .factionimg3{
+      display: flex;
+      flex-direction: column;
+
+      }
+  
+  .text-overlay {
+    background-color: rgba(0, 0, 0, 0.040);
+    color: white;
+    width: 50%;
     
-  }
-  
-  .factionimg1:hover #f1 {
-    transform: translateX(-80px);
-  }
-  
-  .text-overlay1 {
-    width: 160px;
-    position: absolute;
-    top: 3%;
-    left: -100%;
-    transform: translateX(50%);
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0.040);
-    color: white;
-    transition: transform 0.3s ease, opacity 0.3s ease;
 }
   
-  .factionimg1:hover .text-overlay1 {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  .factionimg2:hover #f2 {
-    transform: translateX(-80px);
-  }
-  
-  .text-overlay2 {
-    width: 160px;
-    position: absolute;
-    top: 5%;
-    left: -100%;
-    transform: translateX(50%);
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0.040);
-    color: white;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-  
-  .factionimg2:hover .text-overlay2 {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  .factionimg3:hover #f3 {
-    transform: translateX(-80px);
-  }
-  
-  .text-overlay3 {
-    width: 180px;
-    position: absolute;
-    top: 5%;
-    left: -100%;
-    transform: translateX(50%);
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0.040);
-    color: white;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-  
-  .factionimg3:hover .text-overlay3 {
-    transform: translateX(0);
-    opacity: 1;
-  }
   .borderfaction {
     border-color: rgba(0, 0, 0, 0.043);
     padding: 4px 120px;
@@ -366,7 +329,7 @@ padding-top: 66%;
 
 .grid11{
   grid-area: area11;
-  margin-left: 85%;
+  margin-left: auto;
   
   
 }
