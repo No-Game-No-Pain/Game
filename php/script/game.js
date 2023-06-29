@@ -125,10 +125,9 @@ function afficherHistoriqueAttaques() {
     historiqueContainer.appendChild(attaqueElement);
   });
 
-    // Faire défiler vers le bas pour afficher le dernier élément
-    var dernierElement = historiqueContainer.lastElementChild;
-    dernierElement.scrollIntoView();
-
+  // Faire défiler vers le bas pour afficher le dernier élément
+  var dernierElement = historiqueContainer.lastChild;
+  dernierElement.scrollIntoView();
 }
 
 // Démarrage du combat
@@ -153,7 +152,7 @@ function demarrerCombat() {
   var intervalID;
 
   // Fonction pour effectuer une attaque à intervalles réguliers
-  var intervalID = setInterval(function() {
+  intervalID = setInterval(function() {
     // Vérifier si tous les joueurs d'une équipe sont morts
     if (
       equipeTousMorts(equipe1Shuffled) ||
@@ -165,59 +164,60 @@ function demarrerCombat() {
       // Afficher les équipes victorieuses
       var resultatCombat = document.getElementById("resultatCombat");
       if (equipeTousMorts(equipe1Shuffled)) {
-      resultatCombat.textContent = "Équipe 2 gagne !";
+        resultatCombat.textContent = "Équipe 2 gagne !";
       } else {
-       resultatCombat.textContent = "Équipe 1 gagne !";
-}
+        resultatCombat.textContent = "Équipe 1 gagne !";
+      }
 
       return;
     }
 
     // Attaque de l'équipe qui attaque
-var attaquant, cible;
+    var attaquant, cible;
 
-if (equipeQuiAttaque === equipe1Shuffled) {
-  attaquant = equipe1Shuffled[equipe1Index];
-  cible = equipe2Shuffled[equipe2Index];
-} else {
-  attaquant = equipe2Shuffled[equipe2Index];
-  cible = equipe1Shuffled[equipe1Index];
-}
+    if (equipeQuiAttaque === equipe1Shuffled) {
+      attaquant = equipe1Shuffled[equipe1Index];
+      cible = equipe2Shuffled[equipe2Index];
+    } else {
+      attaquant = equipe2Shuffled[equipe2Index];
+      cible = equipe1Shuffled[equipe1Index];
+    }
 
-// Effectuer l'attaque
-effectuerAttaque(attaquant, cible);
+    // Effectuer l'attaque
+    effectuerAttaque(attaquant, cible);
 
-// Passer au joueur suivant de l'équipe qui attaque
-if (equipeQuiAttaque === equipe1Shuffled) {
-  equipe1Index = (equipe1Index + 1) % equipe1Shuffled.length;
-} else {
-  equipe2Index = (equipe2Index + 1) % equipe2Shuffled.length;
-}
+    // Passer au joueur suivant de l'équipe qui attaque
+    if (equipeQuiAttaque === equipe1Shuffled) {
+      equipe1Index = (equipe1Index + 1) % equipe1Shuffled.length;
+    } else {
+      equipe2Index = (equipe2Index + 1) % equipe2Shuffled.length;
+    }
 
-// Changer l'équipe qui attaque et l'équipe cible
-var tempEquipeQuiAttaque = equipeQuiAttaque;
-equipeQuiAttaque = equipeCible;
-equipeCible = tempEquipeQuiAttaque;
+    // Changer l'équipe qui attaque et l'équipe cible
+    var tempEquipeQuiAttaque = equipeQuiAttaque;
+    equipeQuiAttaque = equipeCible;
+    equipeCible = tempEquipeQuiAttaque;
 
-// Vérifier si tous les joueurs d'une équipe ont attaqué
-if (
-  equipe1Index === 0 &&
-  equipe2Index === 0 &&
-  equipeQuiAttaque === equipe1Shuffled
-) {
-  // Mélanger aléatoirement les équipes
-  equipe1Shuffled = shuffle(equipe1Shuffled);
-  equipe2Shuffled = shuffle(equipe2Shuffled);
+    // Vérifier si tous les joueurs d'une équipe ont attaqué
+    if (
+      equipe1Index === 0 &&
+      equipe2Index === 0 &&
+      equipeQuiAttaque === equipe1Shuffled
+    ) {
+      // Mélanger aléatoirement les équipes
+      equipe1Shuffled = shuffle(equipe1Shuffled);
+      equipe2Shuffled = shuffle(equipe2Shuffled);
 
-  // Choisir de manière aléatoire l'attaquant et la cible pour le prochain tour
-  equipe1Index = Math.floor(Math.random() * equipe1Shuffled.length);
-  equipe2Index = Math.floor(Math.random() * equipe2Shuffled.length);
-}
+      // Choisir de manière aléatoire l'attaquant et la cible pour le prochain tour
+      equipe1Index = Math.floor(Math.random() * equipe1Shuffled.length);
+      equipe2Index = Math.floor(Math.random() * equipe2Shuffled.length);
+    }
 
     // Afficher l'historique des attaques à chaque tour de boucle
     afficherHistoriqueAttaques();
-  }, 50); // Interval en millisecondes (ici, 1 seconde)
+  }, 400); // Interval en millisecondes (ici, 50 millisecondes)
 }
+
 
 // Vérifie si tous les joueurs d'une équipe ont une vie inférieure ou égale à zéro
 function equipeTousMorts(equipe) {
