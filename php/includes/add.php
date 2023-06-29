@@ -1,14 +1,7 @@
 <?php
 include "./includes/connect.php";
-/* $reponse = $conn->query('INSERT INTO `User` (`ID_User`, `Name`, `Level`, `Team`, `ID_Class`, `ID_Personalized`) VALUES (NULL, 'Morgan', '2', NULL, '3', '2');');
-while ($donnees = $reponse->fetch())
-{
-       echo $donnees['Name'] . '<br />';
-}
-$reponse->closeCursor();*/
-
 ?>
-    <body class="page2">
+    <body class="page2" style="overflow: auto;">
         <div class="container-add">
                 <div class="mute">
                     <img src="./images/mute.jpg" alt="mute">
@@ -33,7 +26,7 @@ $reponse->closeCursor();*/
                 </div>
                 <div class="grid14">
                     <div class="list-users">
-                        <select name="users" style="width: 22%;" id="users" class="selectperso">
+                        <select name="users" style="width: 32%;" id="users" class="selectperso">
                         <?php
                         $reponse = $conn->query('SELECT * FROM `User`;');
                         while ($donnees = $reponse->fetch())
