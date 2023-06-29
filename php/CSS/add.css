@@ -4,7 +4,7 @@
     background-size: cover;
     background-attachment: fixed;
     background-position-x: center;
-    overflow: hidden;
+    overflow: auto !important;
 }
 .container-add{
     width: 100%;
@@ -40,7 +40,7 @@
   
   .input-name {
     grid-area: area2;
-    margin-left: -462px;
+    margin-left: -443px;
   }
   .borders{
     border-color: rgba(0, 0, 0, 0.043) ;
@@ -66,7 +66,7 @@
 .input-class{
     grid-area: area3; 
     margin-top: 40px;
-    margin-left: -447px;
+    margin-left: -417px;
 }
 .selectperso{
     border-radius: 5px;
@@ -109,6 +109,7 @@ select option :hover {
     padding: 4px;
     margin-left: 5%;
     font-size: 130%;
+    width: 40%;
 }
 .nosfaction{
     border-radius: 5px;
@@ -273,8 +274,9 @@ padding-top: 66%;
 }
 
 .slider__slide img {
-  width: 110%;
-  margin-top: -30px;
+  width: 125%;
+  height: 100%;
+  
 }
 
 .slider__nav-button {
