@@ -60,7 +60,7 @@ include "./includes/connect.php";
                         echo '<img class="imgclass" src="../images/Cowboy.png" alt="Cowboy">';
                     }
                     elseif ($donnees['ID_Class'] == 5) {
-                        echo '<img class="imgclass" src="../images/Hazel.png" alt="Hazel">';
+                        echo '<img class="imgclass" id="hazel" src="../images/Hazel.png" alt="Hazel">';
                     }
                     elseif ($donnees['ID_Class'] == 6) {
                         echo '<img class="imgclass" src="../images/Cyber.png" alt="Cyber">';
