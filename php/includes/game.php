@@ -31,12 +31,13 @@ include "./includes/connect.php";
             echo '</div>';
         }
       }
-        ?>
-        </div>
-        <div id="equipe2">
-        <?php
+  ?>
+  </div>
+    <div id="equipe2">
+      <?php
         $response = $conn->query('SELECT * FROM User');
         while ($donnees = $response->fetch()) {
+          if($donnees['Team']== 2){
             echo '<div id="teamdroite">';
             echo '<h3>'. $donnees['Name'] . '</h3>';
             echo '<h2>'. $donnees['Team'] . '</h2>';
@@ -60,7 +61,7 @@ include "./includes/connect.php";
             }
             echo '</div>';
           }
-    
+        }
     
   ?>
 
