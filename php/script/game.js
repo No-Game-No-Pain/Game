@@ -1,4 +1,21 @@
 // Exemple de données d'entités
+var backgroundSound = new Audio('./images/Gamemusic.mp3');
+backgroundSound.loop = true;
+document.addEventListener("DOMContentLoaded", function() {
+var muteButton = document.getElementById('muteButton');
+var isMuted = false;
+backgroundSound.play (); 
+muteButton.addEventListener('click', function() {
+  if (isMuted) {
+    backgroundSound.volume = 1; // Rétablir le volume à 100%
+    muteButton.src = "./images/mute.jpg"; // Mettre à jour l'image du bouton
+  } else {
+    backgroundSound.volume = 0; // Mettre le volume à 0 (mute)
+    muteButton.src = "./images/unmute.jpg"; // Mettre à jour l'image du bouton
+  }
+  
+  isMuted = !isMuted; // Inverser l'état du mute
+})});
 var equipe1 = [
   { nom: "Entité 1", classe: "Guerrier", vie: 100, attaque: 20 },
   { nom: "Entité 2", classe: "Mage", vie: 80, attaque: 30 },
@@ -163,10 +180,15 @@ function demarrerCombat() {
 
       // Afficher les équipes victorieuses
       var resultatCombat = document.getElementById("resultatCombat");
+      var victory = new Audio('./images/Victory.mp3');
       if (equipeTousMorts(equipe1Shuffled)) {
         resultatCombat.textContent = "Équipe 2 gagne !";
+        backgroundSound.volume = 0; 
+        victory.play ();
       } else {
         resultatCombat.textContent = "Équipe 1 gagne !";
+        backgroundSound.volume = 0; 
+        victory.play ();
       }
 
       return;
