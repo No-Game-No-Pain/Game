@@ -7,11 +7,11 @@ include "./includes/connect.php";
                     <img src="./images/mute.jpg" alt="mute">
                 </div>
     <div class="formcontainer">
-        <form method="post" action="" enctype="multipart/form-data">
+        <form method="post" action="includes/action.php" enctype="multipart/form-data">
         
                 <div class="input-name">
                     <label for="inputField" class="borders"> Nom du joueur :  </label>
-                    <input type="text" id="inputField" name="name" placeholder="Ajouter votre nom">
+                    <input type="text" id="inputField" name="name" placeholder="Ajouter votre nom" require>
                 </div>
                 <div class="input-class">
                     <label for="class" class="borders"> Choisissez votre classe : </label>
@@ -43,35 +43,7 @@ include "./includes/connect.php";
                         <button type="submit" value="remove" id="removeuser" class="remove borders" name="REMOVE">Supprimer</button>
                 </div>
             </form>
-</div>
-<?php
-if (isset($_POST['ADD'])) {
-    $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : null;
-    $selectclass = isset($_POST['inputclass']) && !empty($_POST['inputclass']) ? $_POST['inputclass'] : null;
-
-    if ($name && $selectclass) {
-        $sql = "INSERT INTO `User` (`Name`, `Level`, `Team`, `ID_Class`, `ID_Personalized`) VALUES (:name, '1', NULL, :clas, '1')";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':clas', $selectclass);
-      
-        // Exécution de la requête
-        $stmt->execute();
-    }
-}
-elseif (isset($_POST['REMOVE']) && isset($_POST['users']) && !empty($_POST['users'])) {
-    $selectedUser = $_POST['users'];
-    $sql = "DELETE FROM `User` WHERE ID_User = :userId";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':userId', $selectedUser);
-    $stmt->execute();
-}
-?>
-            
-                
-           
-
-            
+</div>        
             
             <div class="description1 ">
                 <div class="list borders" style= "height: 100%; font-size: 30px;" >
@@ -89,38 +61,40 @@ elseif (isset($_POST['REMOVE']) && isset($_POST['users']) && !empty($_POST['user
                 </div>
             </div>
             <div class="form2"style= "margin-right: 86px;">
-                <form method="post" action="" enctype="multipart/form-data">
+                <form method="post" action="includes/action.php" enctype="multipart/form-data">
                     <div class="input-fraction">
                         <label for="inputFaction" class="borders"> Nom de la faction :  </label>
                         <input type="text" id="inputFaction" name="factionpersonalized" placeholder="Ajouter nom de la faction">
                     </div>
                     <div class="gridfaction">
-                        <div style="width: 20%; height: 100%;" class="borderfaction f">
-                            <div class="factionimg1 text-overlay1">
-                                <img id="f1" style="width: 20%; margin-left: -85%; margin-top: 5%;" src="./images/f1.png" alt="faction">
-                                <p style="margin-top: -50%;">Les chevaliers de l’aube<br>Buff +5 ATK  et +5 HP</p>
+                        <div style="width:280px" class="borderfaction">
+                            <div class="factionimg1 text-overlay1 f">
+                                <img width="50" id="f1" style="margin-right: 20px;" src="./images/f1.png" alt="faction">
+                                <p style="">Les chevaliers de l’aube<br>Buff +5 ATK  et +5 HP</p>
                             </div>
                             <br>
-                            <div class="factionimg2 text-overlay2">
-                                <img id="f2" style="width: 20%; margin-left: -85%; margin-top: 5%;" src="./images/f2.png" alt="faction">
-                                <p style="margin-top: -50%;">Chevaliers des ténébres<br>Buff +8 ATK et +2 HP</p>
+                            <div class="factionimg2 text-overlay2 f">
+                                <img width="50" id="f2" style="margin-right: 20px;" src="./images/f2.png" alt="faction">
+                                <p style="">Chevaliers des ténébres<br>Buff +8 ATK et +2 HP</p>
                             </div>
                             <br>
-                            <div class="factionimg3 text-overlay3">
-                                <img id="f3" style="width: 20%; margin-left: -85%; margin-top: 5%;" src="./images/f3.png" alt="faction"> 
-                                <p style="margin-top: -50%;">Sentinelles de la lumières<br>Buff +8 HP et + 2 ATK</p> 
+                            <div class="factionimg3 text-overlay3 f">
+                                <img width="50" id="f3" style="margin-right: 20px;" src="./images/f3.png" alt="faction"> 
+                                <p style="">Sentinelles de la lumières<br>Buff +8 HP et + 2 ATK</p> 
                             </div> 
                          </div> 
-                    </div>
+                   
                            
-                    <div class="grid8" style="grid-area: area8; margin-left: 210px;">
+                    
                     <div class="optionfaction">
-                        <select name="inputfaction" id="faction" class="selectperso" style="width: 300px;">
+                        <select name="inputfaction" id="faction" class="selectperso" style="width: 268px;">
                             <option value="1">Les chevaliers de l’aube</option>
                             <option value="2">Chevaliers des ténébres</option>
                             <option value="3">Sentinelles de la lumières</option>
                         </select>
                     </div>
+                    </div>
+                    <div class="grid8" style="grid-area: area8;">
                     <div class ='button' style ="margin-top: 113px;">
                         <button type="submit" value="addfaction" name="addfaction" id="addfraction" class="add borders" >Ajouter</button>
                         <button type="submit" value="removefaction" name="removefaction" id="removefraction" class="remove borders">Supprimer</button>
@@ -129,31 +103,6 @@ elseif (isset($_POST['REMOVE']) && isset($_POST['users']) && !empty($_POST['user
                     </div>
                 </form>
             </div>
-
-<?php
-        if (isset($_POST['addfaction'])) {
-            $namefaction = isset($_POST['factionpersonalized']) ? htmlspecialchars($_POST['factionpersonalized']) : null;
-            $inputfaction = isset($_POST['inputfaction']) && !empty($_POST['inputfaction']) ? $_POST['inputfaction'] : null;
-
-            if ($namefaction && $inputfaction) {
-                $sql = "INSERT INTO `Personalized` (`Name_Personalized`, `ID_Faction`) VALUES (:namef,:idfaction)";
-                $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':namef', $namefaction);
-                $stmt->bindParam(':idfaction', $inputfaction);
-      
-        // Exécution de la requête
-        $stmt->execute();
-    }
-}
-if (isset($_POST['removefaction']) && isset($_POST['factionpersonalized']) && !empty($_POST['factionpersonalized'])) {
-    $factionpersonalized = $_POST['factionpersonalized'];
-    $sql = "DELETE FROM `Personalized` WHERE Name_Personalized = :namefaction";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':namefaction', $factionpersonalized);
-    $stmt->execute();
-}
-?>
-            
             
             <div class="grid10">
                 <div class="background">
