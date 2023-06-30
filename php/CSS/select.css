@@ -169,7 +169,7 @@ h2{
     justify-content: space-around;
     align-items: center;
 }
-select{
+.selectFac{
     background-color:rgba(255, 0, 0, 0);
     border:0px solid black;
     color:white;
@@ -177,7 +177,7 @@ select{
     font-size: 25px;
     text-align: center;
 }
-option{
+.selectFac option{
     background-color: black;
 }
 #team2{

@@ -5,7 +5,7 @@ include "./includes/connect.php";
     <div id="team1">
         <h2 class="Imprint">Équipe 1</h2>
         <div class="dropdown">
-            <select>
+            <select class="selectFac">
                 <?php
                 $reponse = $conn->query('SELECT*FROM Personalized');
                 while ($donnees = $reponse->fetch())
@@ -23,7 +23,7 @@ include "./includes/connect.php";
     <div id="team2">
         <h2 class="Imprint">Équipe 2</h2>
         <div class="dropdown">
-            <select>
+            <select class="selectFac">
                 <?php
                 $reponse = $conn->query('SELECT*FROM Personalized');
                 while ($donnees = $reponse->fetch())
@@ -137,7 +137,7 @@ include "./includes/connect.php";
                             for (var i = 0; i < joueursEquipe1Liste.length; i++) {
                                 var joueur = joueursEquipe1Liste[i];
                                 var joueurId = joueur.id;
-                                var factionSelect = joueur.parentElement.nextElementSibling.querySelector('select');
+                                var factionSelect = joueur.closest('.dropdown').querySelector('select');
                                 var factionId = factionSelect.value;
                     
                                 joueursEquipe1.push(joueurId);
