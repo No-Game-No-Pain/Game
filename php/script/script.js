@@ -1,13 +1,4 @@
 
-
-
-
-
-
-
-
-
-
 let draggedItem = null;
 let team1Counter = 0;
 let team2Counter = 0;
