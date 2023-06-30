@@ -1,3 +1,29 @@
+
+var backgroundSound = new Audio('./images/Gamemusic.mp3');
+backgroundSound.loop = true;
+document.addEventListener("DOMContentLoaded", function() {
+var muteButton = document.getElementById('muteButton');
+var isMuted = false;
+backgroundSound.play (); 
+muteButton.addEventListener('click', function() {
+  if (isMuted) {
+    backgroundSound.volume = 1; // Rétablir le volume à 100%
+    muteButton.src = "./images/mute.jpg"; // Mettre à jour l'image du bouton
+  } else {
+    backgroundSound.volume = 0; // Mettre le volume à 0 (mute)
+    muteButton.src = "./images/unmute.jpg"; // Mettre à jour l'image du bouton
+  }
+  
+  isMuted = !isMuted; // Inverser l'état du mute
+})});
+
+
+
+
+
+
+
+
 let draggedItem = null;
 let team1Counter = 0;
 let team2Counter = 0;
