@@ -1,5 +1,5 @@
 
-
+console.log(Team1)
 // Exemple de données d'entités
 var equipe1 = [
   { nom: "Entité 1", classe: "Guerrier", vie: 100, attaque: 20 },
