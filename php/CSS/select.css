@@ -164,3 +164,6 @@ h2{
     height: 75px;
     width: auto;
 }
+#hazel{
+    transform: scaleX(-1);
+}
