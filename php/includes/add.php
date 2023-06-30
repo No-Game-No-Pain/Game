@@ -1,10 +1,10 @@
 <?php
 include "./includes/connect.php";
 ?>
-    <body class="page2">
+    <div class="page2">
         <div class="container-add">
                 <div class="mute">
-                    <img src="./images/mute.jpg" alt="mute">
+                    
                 </div>
     <div class="formcontainer">
         <form method="post" action="includes/action.php" enctype="multipart/form-data">
@@ -180,4 +180,4 @@ include "./includes/connect.php";
         </script>
         
         
-    </body>
+        </div>

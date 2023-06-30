@@ -16,6 +16,7 @@
 </head>
 <body>
     <section>
+    
         <?php
             if(isset($_GET['add'])){
                 include "./includes/add.php";
