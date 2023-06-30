@@ -26,9 +26,7 @@
                 elseif(isset($_GET['game'])){
                     include "./includes/game.php";
                 }
-                else{
-                    include "./includes/acceuil.html";
-                }
+
             ?>
         </section>
     </body>

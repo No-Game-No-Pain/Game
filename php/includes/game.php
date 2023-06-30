@@ -1,5 +1,6 @@
 <?php
 include "./includes/connect.php";
+include "./includes/process_fight.php";
 ?>
 <div id="game">
   <div id="equipe1">
