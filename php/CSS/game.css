@@ -9,7 +9,6 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    overflow-y:scroll;
 }
 #game img{
   height: 165px;
