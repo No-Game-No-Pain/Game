@@ -70,109 +70,124 @@ include "./includes/connect.php";
             $reponse->closeCursor();
         ?>
         <script>
+            function JoueurID(event) {
+                event.dataTransfer.setData("text/plain", event.target.id);
+            }
+
             function allowDrop(event) {
                 event.preventDefault();
             }
-                    
-            function drag(event) {
-                event.dataTransfer.setData("text/plain", event.target.id);
-            }
-                    
-            function drop(event) {
+
+            function dragOver(event) {
                 event.preventDefault();
-                            var joueurId = event.dataTransfer.getData("text/plain");
-                            var joueur = document.getElementById(joueurId);
-                            var targetTeam = event.target;
-                    
-                            // Vérification du nombre maximum de joueurs par équipe
-                            var equipe1 = document.getElementById('selecteam1');
-                            var equipe2 = document.getElementById('selecteam2');
-                    
-                            var joueursEquipe1Liste = equipe1.getElementsByTagName('div');
-                            var joueursEquipe2Liste = equipe2.getElementsByTagName('div');
-                    
-                            if (targetTeam === equipe1 && joueursEquipe1Liste.length >= 5) {
-                                alert("L'équipe 1 ne peut pas avoir plus de 5 joueurs.");
-                                return;
-                            }
-                    
-                            if (targetTeam === equipe2 && joueursEquipe2Liste.length >= 5) {
-                                alert("L'équipe 2 ne peut pas avoir plus de 5 joueurs.");
-                                return;
-                            }
-                    
-                            // Si l'équipe a déjà 5 joueurs, remettre le joueur au milieu
-                            if ((targetTeam === equipe1 && joueursEquipe1Liste.length === 5) || (targetTeam === equipe2 && joueursEquipe2Liste.length === 5)) {
-                                var middleTeam = document.getElementById('seleccentral');
-                                middleTeam.appendChild(joueur);
-                            } else {
-                                targetTeam.appendChild(joueur);
-                            }
-                        }
-                    
-                        function validerEquipes() {
-                            var joueursEquipe1 = [];
-                            var joueursEquipe2 = [];
-                            var joueursEquipe1Factions = [];
-                            var joueursEquipe2Factions = [];
-                    
-                            var equipe1 = document.getElementById('selecteam1');
-                            var equipe2 = document.getElementById('selecteam2');
-                    
-                            var joueursEquipe1Liste = equipe1.getElementsByTagName('div');
-                            var joueursEquipe2Liste = equipe2.getElementsByTagName('div');
-                    
-                            // Vérification du nombre minimum de joueurs par équipe
-                            if (joueursEquipe1Liste.length < 1 || joueursEquipe2Liste.length < 1) {
-                                alert('Il doit y avoir au moins 1 joueur par équipe. Veuillez ajouter des joueurs.');
-                                return;
-                            }
-                    
-                            // Vérification du nombre maximum de joueurs par équipe
-                            if (joueursEquipe1Liste.length > 5 || joueursEquipe2Liste.length > 5) {
-                                alert("Chaque équipe ne peut pas avoir plus de 5 joueurs.");
-                                return;
-                            }
-                    
-                            for (var i = 0; i < joueursEquipe1Liste.length; i++) {
-                                var joueur = joueursEquipe1Liste[i];
-                                var joueurId = joueur.id;
-                                var factionSelect = joueur.closest('.dropdown').querySelector('select');
-                                var factionId = factionSelect.value;
-                    
-                                joueursEquipe1.push(joueurId);
-                                joueursEquipe1Factions.push(FactionId);
-                            }
-                    
-                            for (var j = 0; j < joueursEquipe2Liste.length; j++) {
-                                var joueur = joueursEquipe2Liste[j];
-                                var joueurId = joueur.id;
-                                var factionSelect = joueur.closest('.dropdown').querySelector('select');
-                                var factionId = factionSelect.value;
-                    
-                                joueursEquipe2.push(joueurId);
-                                joueursEquipe2Factions.push(factionId);
-                            }
-                    
-                            // Vérification du choix des Factions
-                            if (joueursEquipe1Factions.includes('selecteam1') || joueursEquipe2Factions.includes('selecteam2')) {
-                                alert('Veuillez sélectionner une faction pour chaque joueur.');
-                                return;
-                            }
-                    
-                            // Envoyer les données vers le script PHP pour les enregistrer dans la base de données
-                            var xhr = new XMLHttpRequest();
-                            xhr.open("POST", "process_form.php", true);
-                            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                            xhr.onreadystatechange = function () {
-                                if (xhr.readyState === 4 && xhr.status === 200) {
-                                    window.location.href = "game.php"; // Rediriger vers la page de jeu après enregistrement des données
-                                }
-                            };
-                            xhr.send("equipe1=" + JSON.stringify(joueursEquipe1) + "&equipe2=" + JSON.stringify(joueursEquipe2) + "&equipe1Factions=" + JSON.stringify(joueursEquipe1Factions) + "&equipe2Factions=" + JSON.stringify(joueursEquipe2Factions));
-                        }
-                    </script>
-            </div>
-        <div id="selecteam2" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)"></div>
+            }
+
+            
+    function drop(event) {
+        event.preventDefault();
+        var joueurId = event.dataTransfer.getData("text/plain");
+        var joueur = document.getElementById(joueurId);
+        var targetTeam = event.target;
+
+        // Vérification du nombre maximum de joueurs par équipe
+        var equipe1 = document.getElementById('selecteam1');
+        var equipe2 = document.getElementById('selecteam2');
+        var selectCentral = document.getElementById('seleccentral');
+
+        var joueursEquipe1Liste = equipe1.children;
+        var joueursEquipe2Liste = equipe2.children;
+
+        if (targetTeam !== equipe1 && targetTeam !== equipe2 && targetTeam !== selectCentral) {
+            return; // Ignorer le glisser-déposer si la cible n'est ni selecteam1, ni selecteam2, ni selectcentral
+        }
+
+        if (targetTeam === equipe1 && joueursEquipe1Liste.length >= 5) {
+            alert("L'équipe 1 ne peut pas avoir plus de 5 joueurs.");
+            return;
+        }
+
+        if (targetTeam === equipe2 && joueursEquipe2Liste.length >= 5) {
+            alert("L'équipe 2 ne peut pas avoir plus de 5 joueurs.");
+            return;
+        }
+
+        // Si l'équipe a déjà 5 joueurs, remettre le joueur au milieu
+        if ((targetTeam === equipe1 && joueursEquipe1Liste.length === 5) || (targetTeam === equipe2 && joueursEquipe2Liste.length === 5)) {
+            selectCentral.appendChild(joueur);
+        } else {
+            targetTeam.appendChild(joueur);
+        }
+    }
+
+
+
+            function validerEquipes() {
+                var joueursEquipe1 = [];
+                var joueursEquipe2 = [];
+                var joueursEquipe1Factions = [];
+                var joueursEquipe2Factions = [];
+
+                var equipe1 = document.getElementById('selecteam1');
+                var equipe2 = document.getElementById('selecteam2');
+
+                var joueursEquipe1Liste = equipe1.children;
+                var joueursEquipe2Liste = equipe2.children;
+
+                // Vérification du nombre minimum de joueurs par équipe
+                if (joueursEquipe1Liste.length < 1 || joueursEquipe2Liste.length < 1) {
+                    alert('Il doit y avoir au moins 1 joueur par équipe. Veuillez ajouter des joueurs.');
+                    return;
+                }
+
+                // Vérification du nombre maximum de joueurs par équipe
+                if (joueursEquipe1Liste.length > 5 || joueursEquipe2Liste.length > 5) {
+                    alert("Chaque équipe ne peut pas avoir plus de 5 joueurs.");
+                    return;
+                }
+
+                for (var i = 0; i < joueursEquipe1Liste.length; i++) {
+                    var joueur = joueursEquipe1Liste[i];
+                    var joueurId = joueur.id;
+                    var factionSelect = joueur.closest('.dropdown').querySelector('select');
+                    var factionId = factionSelect.value;
+
+                    joueursEquipe1.push(joueurId);
+                    joueursEquipe1Factions.push(factionId);
+                }
+
+                for (var j = 0; j < joueursEquipe2Liste.length; j++) {
+                    var joueur = joueursEquipe2Liste[j];
+                    var joueurId = joueur.id;
+                    var factionSelect = joueur.closest('.dropdown').querySelector('select');
+                    var factionId = factionSelect.value;
+
+                    joueursEquipe2.push(joueurId);
+                    joueursEquipe2Factions.push(factionId);
+                }
+
+                // Vérification du choix des Factions
+                if (joueursEquipe1Factions.includes('selecteam1') || joueursEquipe2Factions.includes('selecteam2')) {
+                    alert('Veuillez sélectionner une faction pour chaque joueur.');
+                    return;
+                }
+
+                // Envoyer les données vers le script PHP pour les enregistrer dans la base de données
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "process_form.php", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        window.location.href = "game.php"; // Rediriger vers la page de jeu après enregistrement des données
+                    }
+                };
+                xhr.send(
+                    "equipe1=" + JSON.stringify(joueursEquipe1) +
+                    "&equipe2=" + JSON.stringify(joueursEquipe2) +
+                    "&equipe1Factions=" + JSON.stringify(joueursEquipe1Factions) +
+                    "&equipe2Factions=" + JSON.stringify(joueursEquipe2Factions)
+                );
+            }
+        </script>
     </div>
+    <div id="selecteam2" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)"></div>
 </div>
