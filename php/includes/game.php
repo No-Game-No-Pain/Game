@@ -112,7 +112,7 @@ include "./includes/process_fight.php";
                                   'HP' =>$donnees['HP'],
                                   );}
         echo json_encode($DataClasses)
-        ?>
+        ?>;
         console.table(Classes)
 
     /* ---- */
