@@ -71,26 +71,28 @@ const Classes = <?php
 ?>;
 
 equipe1 = Equipen1.map((data, index) => {
+  const classData = getClassById(data.ID_Class1);
   return {
     nom: data.Name1,
-    classe: getClassById(data.ID_Class1),
-    vie: data.Level1,
+    classe: classData,
+    vie: classData ? classData.HP : null,
     attaque: getClassAttackById(data.ID_Class1)
   };
 });
 
 equipe2 = Equipen2.map((data, index) => {
+  const classData = getClassById(data.ID_Class);
   return {
     nom: data.Name,
-    classe: getClassById(data.ID_Class),
-    vie: data.Level,
+    classe: classData,
+    vie: classData ? classData.HP : null,
     attaque: getClassAttackById(data.ID_Class)
   };
 });
 
 function getClassById(id) {
   const classData = Classes.find((classItem) => classItem.Class === id);
-  return classData ? classData.Class : null;
+  return classData ? classData : null;
 }
 
 function getClassAttackById(id) {
@@ -134,9 +136,24 @@ function creerElementEntite(entite) {
   entiteElement.classList.add("entite");
 
   var imageElement = document.createElement("img");
-  imageElement.src =
-    "./images/buccaneer" + ".png";
-  entiteElement.appendChild(imageElement);
+var classId = entite.classe.Class; // Obtient l'ID de la classe de l'entité
+
+// Condition pour déterminer quelle image charger en fonction de la classe de l'entité
+if (classId === 1) {
+  imageElement.src = "../images/Buccaneer.png";
+} else if (classId === 2) {
+  imageElement.src = "../images/Mage.png";
+} else if (classId === 3) {
+  imageElement.src = "../images/Gunner.png";
+} else if (classId === 4) {
+  imageElement.src = "../images/Cowboy.png";
+} else if (classId === 5) {
+  imageElement.src = "../images/Hazel.png";
+} else {
+  imageElement.src = "../images/Cyber.png";
+}
+
+entiteElement.appendChild(imageElement);
 
   var nomElement = document.createElement("span");
   nomElement.classList.add("nom");
@@ -206,8 +223,10 @@ function afficherHistoriqueAttaques() {
 
   historiqueAttaques.forEach(function(attaque) {
     var attaqueElement = document.createElement("div");
-    attaqueElement.textContent =
-      attaque.attaquant.nom + " attaque " + attaque.cible.nom;
+    var attaquantNom = attaque.attaquant.nom;
+    var cibleNom = attaque.cible.nom;
+    var degats = attaque.attaquant.attaque;
+    attaqueElement.textContent = attaquantNom + " attaque et inflige  " + degats  +" points de dégâts à "+ cibleNom ;
     historiqueContainer.appendChild(attaqueElement);
   });
 
@@ -215,7 +234,6 @@ function afficherHistoriqueAttaques() {
   var dernierElement = historiqueContainer.lastChild;
   dernierElement.scrollIntoView();
 }
-
 // Démarrage du combat
 afficherEntites();
 demarrerCombat();
