@@ -1,28 +1,27 @@
 <?php
-// Establish a connection to the MySQL database
-include "./connect.php";
+include "./includes/connect.php";
 
-// Retrieve form data
-$Team1 = $_POST['1'];
-$TeamNULL = $_POST['NULL'];
-$Team2 = $_POST['2'];
+// Retrieve the data from the form
+$selecteam1 = $_POST['selecteam1'];
+$selecteam2 = $_POST['seleccentral'];
+$selecteam3 = $_POST['selecteam2'];
 
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-// Prepare and execute the SQL statement
-$sql = "INSERT INTO User (`Team`) VALUES (:team1, :teamNULL, :team2)";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':team1', $Team1);
-$stmt->bindParam(':teamNULL', $TeamNULL);
-$stmt ->bindParam(':team2', $Team2);
+// Define the SQL query to insert the data into your database
+$sql = "INSERT INTO User (Team) 
+        VALUES ('$selecteam1'=>'1', '$selecteam2'=>'NULL', '$selecteam3'=>'2')";
 
-try {
-    $stmt->execute();
+// Execute the query
+if ($conn->query($sql) === TRUE) {
     echo "Data inserted successfully";
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
 // Close the database connection
-$conn = null;
+$conn->close();
 ?>
-
