@@ -1,16 +1,44 @@
 <?php
 include "./includes/connect.php";
 ?>
+<div id="game">
 <div id="muteButton" class="mutes" style="position: absolute;right: 0px;padding: 20px;top:0px">
         <img src="./images/mute.jpg" alt="mute">
     </div>
-<div id="game">
   <div id="equipe1">
   </div>
     <div id="equipe2">
   </div>
   <div id="historique"></div>
   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+   //traitement de background
+let backgroundChoice = localStorage.getItem('backgroundChoice');
+console.log(backgroundChoice);
+
+if (backgroundChoice) {
+  // Appliquer le background récupéré
+document.getElementById("game").style.backgroundImage = `url('${backgroundChoice}')`;}
+else{
+  document.getElementById("game").style.backgroundImage = `url('./images/castlebridge.png')`;
+}
+var victory = new Audio('./images/Victory.mp3');
+var backgroundSound = new Audio('./images/Gamemusic.mp3');
+backgroundSound.loop = true;
+var muteButton = document.getElementById('muteButton');
+var isMuted = false;
+backgroundSound.play ();
+muteButton.addEventListener('click', function() {
+  if (isMuted) {
+    backgroundSound.volume = 1; // Rétablir le volume à 100%
+    muteButton.src = "./images/mute.jpg"; // Mettre à jour l'image du bouton
+  } else {
+    backgroundSound.volume = 0; // Mettre le volume à 0 (mute)
+    muteButton.src = "./images/unmute.jpg"; // Mettre à jour l'image du bouton
+  }
+  
+  isMuted = !isMuted; // Inverser l'état du mute
+});
     
     // Exemple de données d'entités
  var equipe1 = [
@@ -267,13 +295,16 @@ function demarrerCombat() {
 
       // Afficher les équipes victorieuses
       var resultatCombat = document.getElementById("resultatCombat");
+      
       if (equipeTousMorts(equipe1Shuffled)) {
         resultatCombat.textContent = "Équipe 2 gagne !";
+        backgroundSound.volume = 0; 
+        victory.play ();
       } else {
         resultatCombat.textContent = "Équipe 1 gagne !";
+        backgroundSound.volume = 0; 
+        victory.play ();
       }
-
-      return;
     }
 
     // Attaque de l'équipe qui attaque
@@ -348,7 +379,7 @@ function shuffle(array) {
   return array;
 }
 
-
+});
 
   </script>
 
