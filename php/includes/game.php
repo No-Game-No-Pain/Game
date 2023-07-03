@@ -1,74 +1,13 @@
 <?php
 include "./includes/connect.php";
-include "./includes/process_fight.php";
 ?>
 <div id="game">
 <div id="muteButton" class="mutes" style="position: absolute;right: 0px;padding: 20px;top:0px">
         <img src="./images/mute.jpg" alt="mute">
     </div>
   <div id="equipe1">
-  <?php 
-    $response = $conn->query('SELECT * FROM User');
-    while ($donnees = $response->fetch()) {
-      if($donnees['Team']== 1){
-            echo '<div id="teamgauche">';
-            echo '<h3>'. $donnees['Name'] . '</h3>';
-            echo '<h2>'. $donnees['Team'] . '</h2>';
-            if ($donnees['Team']==1 & $donnees['ID_Class'] == 1) {
-              echo '<img class="imgclass" src="../images/Buccaneer.png" alt="Buccaneer">';
-            }
-            elseif ($donnees['Team']==1 & $donnees['ID_Class'] == 2) {
-              echo '<img class="imgclass" src="../images/Mage.png" alt="Mage">';
-            }
-            elseif ($donnees['Team']==1 & $donnees['ID_Class'] == 3) {
-              echo '<img class="imgclass" src="../images/Gunner.png" alt="Gunner">';
-            }
-            elseif ($donnees['Team']==1 & $donnees['ID_Class'] == 4) {
-              echo '<img class="imgclass" src="../images/Cowboy.png" alt="Cowboy">';
-            }
-            elseif ($donnees['Team']==1 & $donnees['ID_Class'] == 5) {
-              echo '<img class="imgclass skale" src="../images/Hazel.png" alt="Hazel">';
-            }
-            elseif ($donnees['Team']==1 & $donnees['ID_Class'] == 6) {
-              echo '<img class="imgclass" src="../images/Cyber.png" alt="Cyber">';
-            }
-            echo '</div>';
-        }
-      }
-  ?>
   </div>
     <div id="equipe2">
-      <?php
-        $response = $conn->query('SELECT * FROM User');
-        while ($donnees = $response->fetch()) {
-          if($donnees['Team']== 2){
-            echo '<div id="teamdroite">';
-            echo '<h3>'. $donnees['Name'] . '</h3>';
-            echo '<h2>'. $donnees['Team'] . '</h2>';
-            if ($donnees['Team']==2 & $donnees['ID_Class'] == 1) {
-              echo '<img class="imgclass skale" src="../images/Buccaneer.png" alt="Buccaneer">';
-            }
-            elseif ($donnees['Team']==2 & $donnees['ID_Class'] == 2) {
-              echo '<img class="imgclass skale" src="../images/Mage.png" alt="Mage">';
-            }
-            elseif ($donnees['Team']==2 & $donnees['ID_Class'] == 3) {
-              echo '<img class="imgclass skale" src="../images/Gunner.png" alt="Gunner">';
-            }
-            elseif ($donnees['Team']==2 & $donnees['ID_Class'] == 4) {
-              echo '<img class="imgclas skale" src="../images/Cowboy.png" alt="Cowboy">';
-            }
-            elseif ($donnees['Team']==2 & $donnees['ID_Class'] == 5) {
-              echo '<img class="imgclass" src="../images/Hazel.png" alt="Hazel">';
-            }
-            elseif ($donnees['Team']==2 & $donnees['ID_Class'] == 6) {
-              echo '<img class="imgclass skale" src="../images/Cyber.png" alt="Cyber">';
-            }
-            echo '</div>';
-          }
-        }
-  
-  ?>
-
   </div>
   <div id="historique"></div>
   <script>
@@ -100,54 +39,9 @@ muteButton.addEventListener('click', function() {
   
   isMuted = !isMuted; // Inverser l'état du mute
 });
-    const Equipen1 = <?php 
-      $response = $conn->query('SELECT * FROM User');
-      $team1Data = array();
-        while ($donnees = $response->fetch()) {
-          $team1Data[] = array( 'Team1'=>$donnees['Team'] == 1,
-                                'ID_Class1' => $donnees['ID_Class'],
-                                'Name1' => $donnees['Name'],
-                                'Level1' => $donnees['Level']
-          
-                              );}
-          echo json_encode($team1Data)
-
-    ?>;
-    console.table(Equipen1);
-
-    const Equipen2 = <?php 
-      $response = $conn->query('SELECT * FROM User');
-      $team2Data = array();
-        while ($donnees = $response->fetch()) {
-        $team2Data[] = array( 'Team'=>$donnees['Team'] == 2,
-                              'ID_Class' => $donnees['ID_Class'],
-                              'Name' => $donnees['Name'],
-                              'Level' => $donnees['Level']
-                              
-                            );}
-          echo json_encode($team2Data)
-
-    ?>;
-    console.table(Equipen2)
-
-
-    const Classes = <?php
-      $response = $conn -> query('SELECT * FROM Class');
-      $DataClasses = array();
-        while($donnees = $response-> fetch()) {
-          $DataClasses[] = array( 'Class'=>$donnees['ID_Class'],
-                                  'Attack'=>$donnees['Attack'],
-                                  'HP' =>$donnees['HP'],
-                                  );}
-        echo json_encode($DataClasses)
-        ?>;
-        console.table(Classes)
-
-    /* ---- */
-          
-
-// Exemple de données d'entités
-var equipe1 = [
+    
+    // Exemple de données d'entités
+ var equipe1 = [
   { nom: "Entité 1", classe: "Guerrier", vie: 100, attaque: 20 },
   { nom: "Entité 2", classe: "Mage", vie: 80, attaque: 30 },
   { nom: "Entité 3", classe: "Archer", vie: 90, attaque: 25 },
@@ -163,6 +57,80 @@ var equipe2 = [
   { nom: "Entité 10", classe: "Paladin", vie: 100, attaque: 20 }
 ];
 
+const Equipen1 = <?php 
+  $response = $conn->query('SELECT * FROM User WHERE Team = 1');
+  $team1Data = array();
+  while ($donnees = $response->fetch()) {
+    $team1Data[] = array(
+      'Team1' => $donnees['Team'] == 1,
+      'ID_Class1' => $donnees['ID_Class'],
+      'Name1' => $donnees['Name'],
+      'Level1' => $donnees['Level']
+    );
+  }
+  echo json_encode($team1Data);
+?>;
+
+const Equipen2 = <?php 
+  $response = $conn->query('SELECT * FROM User WHERE Team = 2');
+  $team2Data = array();
+  while ($donnees = $response->fetch()) {
+    $team2Data[] = array(
+      'Team' => $donnees['Team'] == 2,
+      'ID_Class' => $donnees['ID_Class'],
+      'Name' => $donnees['Name'],
+      'Level' => $donnees['Level']
+    );
+  }
+  echo json_encode($team2Data);
+?>;
+
+const Classes = <?php
+  $response = $conn->query('SELECT * FROM Class');
+  $DataClasses = array();
+  while ($donnees = $response->fetch()) {
+    $DataClasses[] = array(
+      'Class' => $donnees['ID_Class'],
+      'Attack' => $donnees['Attack'],
+      'HP' => $donnees['HP']
+    );
+  }
+  echo json_encode($DataClasses);
+?>;
+
+equipe1 = Equipen1.map((data, index) => {
+  const classData = getClassById(data.ID_Class1);
+  return {
+    nom: data.Name1,
+    classe: classData,
+    vie: classData ? classData.HP : null,
+    attaque: getClassAttackById(data.ID_Class1)
+  };
+});
+
+equipe2 = Equipen2.map((data, index) => {
+  const classData = getClassById(data.ID_Class);
+  return {
+    nom: data.Name,
+    classe: classData,
+    vie: classData ? classData.HP : null,
+    attaque: getClassAttackById(data.ID_Class)
+  };
+});
+
+function getClassById(id) {
+  const classData = Classes.find((classItem) => classItem.Class === id);
+  return classData ? classData : null;
+}
+
+function getClassAttackById(id) {
+  const classData = Classes.find((classItem) => classItem.Class === id);
+  return classData ? classData.Attack : null;
+}
+
+console.table(equipe1);
+console.table(equipe2);
+console.table(Classes);
 var historiqueAttaques = [];
 
 var equipe1Index = 0; // Indice de l'entité active de l'équipe 1
@@ -196,9 +164,24 @@ function creerElementEntite(entite) {
   entiteElement.classList.add("entite");
 
   var imageElement = document.createElement("img");
-  imageElement.src =
-    "./images/buccaneer" + ".png";
-  entiteElement.appendChild(imageElement);
+var classId = entite.classe.Class; // Obtient l'ID de la classe de l'entité
+
+// Condition pour déterminer quelle image charger en fonction de la classe de l'entité
+if (classId === 1) {
+  imageElement.src = "../images/Buccaneer.png";
+} else if (classId === 2) {
+  imageElement.src = "../images/Mage.png";
+} else if (classId === 3) {
+  imageElement.src = "../images/Gunner.png";
+} else if (classId === 4) {
+  imageElement.src = "../images/Cowboy.png";
+} else if (classId === 5) {
+  imageElement.src = "../images/Hazel.png";
+} else {
+  imageElement.src = "../images/Cyber.png";
+}
+
+entiteElement.appendChild(imageElement);
 
   var nomElement = document.createElement("span");
   nomElement.classList.add("nom");
@@ -268,8 +251,10 @@ function afficherHistoriqueAttaques() {
 
   historiqueAttaques.forEach(function(attaque) {
     var attaqueElement = document.createElement("div");
-    attaqueElement.textContent =
-      attaque.attaquant.nom + " attaque " + attaque.cible.nom;
+    var attaquantNom = attaque.attaquant.nom;
+    var cibleNom = attaque.cible.nom;
+    var degats = attaque.attaquant.attaque;
+    attaqueElement.textContent = attaquantNom + " attaque et inflige  " + degats  +" points de dégâts à "+ cibleNom ;
     historiqueContainer.appendChild(attaqueElement);
   });
 
@@ -277,7 +262,6 @@ function afficherHistoriqueAttaques() {
   var dernierElement = historiqueContainer.lastChild;
   dernierElement.scrollIntoView();
 }
-
 // Démarrage du combat
 afficherEntites();
 demarrerCombat();
