@@ -55,32 +55,31 @@
     border-radius: 17px;
     background: rgba(0, 0, 0, 0.40);
 }
-#seleccentral{
-    grid-column-start:  2;
-    grid-column-end:  3;
-    grid-row-start: 2 ;
-    grid-row-end:4;
-    border-radius: 17px;
-    background: rgba(0, 0, 0, 0.40);
-}
 /*Display grid du display grid*/
-
 #selecteam1{
-    grid-column-start:  1;
-    grid-column-end:  2;
-    grid-row-start: 3 ;
-    grid-row-end:5 ;
+    position: absolute;
+    width: 30%;
+    height: 620px;
+    transform: translate(-627px,122px);
     margin-top: 10px;
     border-radius: 17px;
     background: rgba(0, 0, 0, 0.40);
 }
 #selecteam2{
-    grid-column-start:  3;
-    grid-column-end:  4;
-    grid-row-start: 3 ;
-    grid-row-end:5  ;
+    position: absolute;
+    width: 30%;
+    height: 620px;
     margin-top: 10px;
     border-radius: 17px;
+    transform: translate(627px,122px);
+    background: rgba(0, 0, 0, 0.40);
+}
+#seleccentral{
+    position: absolute;
+    width: 30%;
+    height: 620px;
+    border-radius: 17px;
+    transform: translate(0px,0px);
     background: rgba(0, 0, 0, 0.40);
 }
 /* Fin display grid et du display grid du display grid */
@@ -188,4 +187,12 @@ h2{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+#btnsub{
+    position: absolute;
+    width: 30%;
+    height: 100px;
+    transform: translate(0px,650px);
+    border-radius: 17px;
+    background: rgba(0, 0, 0, 0.40);
 }
