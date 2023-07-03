@@ -149,11 +149,13 @@ function afficherEntites() {
 
   equipe1.forEach(function(entite) {
     var entiteElement = creerElementEntite(entite);
+    entiteElement.classList.add("class-" + entite.classe.Class); // Ajouter la classe correspondante
     equipe1Container.appendChild(entiteElement);
   });
 
   equipe2.forEach(function(entite) {
     var entiteElement = creerElementEntite(entite);
+    entiteElement.classList.add("class-" + entite.classe.Class); // Ajouter la classe correspondante
     equipe2Container.appendChild(entiteElement);
   });
 }
