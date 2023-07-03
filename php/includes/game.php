@@ -149,13 +149,13 @@ function afficherEntites() {
 
   equipe1.forEach(function(entite) {
     var entiteElement = creerElementEntite(entite);
-    entiteElement.classList.add("class-" + entite.classe.Class); // Ajouter la classe correspondante
+    entiteElement.classList.add("class_" + entite.classe.Class); // Ajouter la classe correspondante
     equipe1Container.appendChild(entiteElement);
   });
 
   equipe2.forEach(function(entite) {
     var entiteElement = creerElementEntite(entite);
-    entiteElement.classList.add("class-" + entite.classe.Class); // Ajouter la classe correspondante
+    entiteElement.classList.add("class_" + entite.classe.Class); // Ajouter la classe correspondante
     equipe2Container.appendChild(entiteElement);
   });
 }
@@ -354,6 +354,35 @@ function demarrerCombat() {
     afficherHistoriqueAttaques();
   }, 400); // Interval en millisecondes (ici, 50 millisecondes)
 }
+
+function fetchLvlUpEquipe(team) {
+  fetch('http://localhost:8000/index.php?game', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(team),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Mise à jour réussie :', data);
+      // Effectuez les actions nécessaires après la mise à jour, par exemple, afficher un message de succès ou recharger la page
+    })
+    .catch(error => {
+      console.error('Erreur lors de la mise à jour :', error);
+      // Gérez les erreurs de la requête, par exemple, afficher un message d'erreur à l'utilisateur
+    });
+}
+
+// Exemple d'utilisation après la fin du combat
+if (equipeTousMorts(equipe1Shuffled)) {
+  // L'équipe 2 a gagné, mettez à jour le niveau de l'équipe 2
+  fetchLvlUpEquipe(equipe2);
+} else {
+  // L'équipe 1 a gagné, mettez à jour le niveau de l'équipe 1
+  fetchLvlUpEquipe(equipe1);
+}
+
 
 
 // Vérifie si tous les joueurs d'une équipe ont une vie inférieure ou égale à zéro
