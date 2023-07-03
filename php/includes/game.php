@@ -76,11 +76,16 @@ include "./includes/process_fight.php";
       $response = $conn->query('SELECT * FROM User');
       $team1Data = array();
         while ($donnees = $response->fetch()) {
-        $team1Data[] = $donnees['Team'] == 1;}
+          $team1Data[] = array( 'Team1'=>$donnees['Team'] == 1,
+                                'ID_Class1' => $donnees['ID_Class'],
+                                'Name1' => $donnees['Name'],
+                                'Level1' => $donnees['Level']
+          
+                              );}
           echo json_encode($team1Data)
 
     ?>;
-    console.log(Equipen1);
+    console.table(Equipen1);
 
     const Equipen2 = <?php 
       $response = $conn->query('SELECT * FROM User');
@@ -89,13 +94,26 @@ include "./includes/process_fight.php";
         $team2Data[] = array( 'Team'=>$donnees['Team'] == 2,
                               'ID_Class' => $donnees['ID_Class'],
                               'Name' => $donnees['Name'],
+                              'Level' => $donnees['Level']
                               
                             );}
           echo json_encode($team2Data)
 
     ?>;
     console.table(Equipen2)
-          
+
+
+    const Classes = <?php
+      $response = $conn -> query('SELECT * FROM Class');
+      $DataClasses = array();
+        while($donnees = $response-> fetch()) {
+          $DataClasses[] = array( 'Class'=>$donnees['ID_Class'],
+                                  'Attack'=>$donnees['Attack'],
+                                  'HP' =>$donnees['HP'],
+                                  );}
+        echo json_encode($DataClasses)
+        ?>
+        console.table(Classes)
 
     /* ---- */
           
