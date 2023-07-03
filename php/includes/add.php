@@ -4,7 +4,8 @@ include "./includes/connect.php";
     <div class="page2">
         <div class="container-add">
                 <div class="mute">
-                    
+                    <br><br><br>
+                    <br><br><br>
                 </div>
     <div class="formcontainer">
         <form method="post" action="includes/action.php" enctype="multipart/form-data">
@@ -147,36 +148,58 @@ include "./includes/connect.php";
            
         </div>
         <script>
-            let slides = document.getElementsByClassName("slider__slide");
-            let navlinks = document.getElementsByClassName("slider__navlink");
-            let currentSlide = 0;
+            
 
-            document.getElementById("nav-button--next").addEventListener("click", () => {
-            changeSlide(currentSlide + 1)
-            });
-            document.getElementById("nav-button--prev").addEventListener("click", () => {
-            changeSlide(currentSlide - 1)
-            });
+//choix slide
+let slides = document.getElementsByClassName("slider__slide");
+let navlinks = document.getElementsByClassName("slider__navlink");
+let currentSlide = 0;
 
-            function changeSlide(moveTo) {
-                if (moveTo >= slides.length) {moveTo = 0;}
-                if (moveTo < 0) {moveTo = slides.length - 1;}
-                
-                slides[currentSlide].classList.toggle("active");
-                navlinks[currentSlide].classList.toggle("active");
-                slides[moveTo].classList.toggle("active");
-                navlinks[moveTo].classList.toggle("active");
-                
-                currentSlide = moveTo;
-            }
+document.getElementById("nav-button--next").addEventListener("click", () => {
+  changeSlide(currentSlide + 1);
+});
 
-            document.querySelectorAll('.slider__navlink').forEach((bullet, bulletIndex) => {
-                bullet.addEventListener('click', () => {
-                    if (currentSlide !== bulletIndex) {
-                        changeSlide(bulletIndex);
-                    }
-                })
-            })
+document.getElementById("nav-button--prev").addEventListener("click", () => {
+  changeSlide(currentSlide - 1);
+});
+
+function changeSlide(moveTo) {
+  if (moveTo >= slides.length) {
+    moveTo = 0;
+  }
+  if (moveTo < 0) {
+    moveTo = slides.length - 1;
+  }
+
+  slides[currentSlide].classList.toggle("active");
+  navlinks[currentSlide].classList.toggle("active");
+  slides[moveTo].classList.toggle("active");
+  navlinks[moveTo].classList.toggle("active");
+
+  currentSlide = moveTo;
+
+  changeBackground(slides[currentSlide]);
+}
+
+function changeBackground(slide) {
+  let imageUrl = slide.querySelector("img").src;
+  //document.getElementById("game").style.backgroundImage = `url('${imageUrl}')`;
+
+  // Stocker le choix de background dans le stockage local
+  localStorage.setItem('backgroundChoice', imageUrl);
+}
+
+document.querySelectorAll('.slider__navlink').forEach((bullet, bulletIndex) => {
+  bullet.addEventListener('click', () => {
+    if (currentSlide !== bulletIndex) {
+      changeSlide(bulletIndex);
+    }
+  });
+});
+
+
+
+
         </script>
         
         

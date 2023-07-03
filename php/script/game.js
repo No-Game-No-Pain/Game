@@ -1,6 +1,15 @@
 
 console.log(Team1)
-// Exemple de données d'entités
+
+
+
+//background
+let backgroundChoice = localStorage.getItem('backgroundChoice');
+
+if (backgroundChoice) {
+  // Appliquer le background récupéré
+  document.getElementById("game").style.backgroundImage = `url('${backgroundChoice}')`;}
+
 var backgroundSound = new Audio('./images/Gamemusic.mp3');
 backgroundSound.loop = true;
 document.addEventListener("DOMContentLoaded", function() {
@@ -18,6 +27,9 @@ muteButton.addEventListener('click', function() {
   
   isMuted = !isMuted; // Inverser l'état du mute
 })});
+
+
+// Exemple de données d'entités
 var equipe1 = [
   { nom: "Entité 1", classe: "Guerrier", vie: 100, attaque: 20 },
   { nom: "Entité 2", classe: "Mage", vie: 80, attaque: 30 },

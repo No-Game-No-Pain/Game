@@ -1,7 +1,7 @@
 #game{
     height: 100vh;
-    background-image: url(../images/skybridge.png);
-  /* Appliquer l'animation au fond d'écran */
+    
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
