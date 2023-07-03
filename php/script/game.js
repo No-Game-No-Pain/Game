@@ -1,4 +1,6 @@
 
+console.log(Team1)
+
 
 
 //background
