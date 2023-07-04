@@ -1,5 +1,7 @@
 <?php
 include "./includes/connect.php";
+$stmt = $conn->prepare("UPDATE User SET Team = null");
+$stmt->execute();
 ?>
 <div id="bgselect">
     <div id="team1">
@@ -7,9 +9,8 @@ include "./includes/connect.php";
         <div class="dropdown">
             <select class="selectFac">
                 <?php
-                $reponse = $conn->query('SELECT*FROM Personalized');
-                while ($donnees = $reponse->fetch())
-                {
+                $reponse = $conn->query('SELECT * FROM Personalized');
+                while ($donnees = $reponse->fetch()) {
                     echo '<option value="'.$donnees['ID_Personalized'].'">' .$donnees['Name_Personalized']. '</option>';
                 }
                 $reponse->closeCursor();
@@ -25,9 +26,8 @@ include "./includes/connect.php";
         <div class="dropdown">
             <select class="selectFac">
                 <?php
-                $reponse = $conn->query('SELECT*FROM Personalized');
-                while ($donnees = $reponse->fetch())
-                {
+                $reponse = $conn->query('SELECT * FROM Personalized');
+                while ($donnees = $reponse->fetch()) {
                     echo '<option value="'.$donnees['ID_Personalized'].'">' .$donnees['Name_Personalized']. '</option>';
                 }
                 $reponse->closeCursor();
@@ -36,53 +36,50 @@ include "./includes/connect.php";
         </div>
     </div>
     <a href="index.php?add" id="returnbtn"><img src="./images/previouspage.png" alt="Page précédente"></a>
-    <a href="index.php?game" type="submit" id="startgame"><img src="./images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a> 
+    <a href="index.php?game" id="startgame"><img src="./images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a> 
     <div id="dropbox"></div>   
     <div id="selecteam1" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)"></div>
     <div id="seleccentral" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)">
         <?php
-            $reponse = $conn->query('SELECT * FROM User');
-            while ($donnees = $reponse->fetch())
-            {
-                echo '<div class="players" class="drag-item" draggable="true" ondragstart="JoueurID(event)" id="item'.$donnees['ID_User'].'">';
-                echo '<h3 id="playername">'.$donnees['Name'].'</h3>';
-                if ($donnees['ID_Class'] == 1) {
-                    echo '<img class="imgclass" src="../images/Buccaneer.png" alt="Buccaneer">';
-                }
-                elseif ($donnees['ID_Class'] == 2) {
-                    echo '<img class="imgclass" src="../images/Mage.png" alt="Mage">';
-                }
-                elseif ($donnees['ID_Class'] == 3) {
-                    echo '<img class="imgclass" src="../images/Gunner.png" alt="Gunner">';
-                }
-                elseif ($donnees['ID_Class'] == 4) {
-                    echo '<img class="imgclass" src="../images/Cowboy.png" alt="Cowboy">';
-                }
-                elseif ($donnees['ID_Class'] == 5) {
-                    echo '<img class="imgclass" src="../images/Hazel.png" alt="Hazel">';
-                }
-                elseif ($donnees['ID_Class'] == 6) {
-                    echo '<img class="imgclass" src="../images/Cyber.png" alt="Cyber">';
-                }             
-                echo '<h4 id="playerlvl">Lvl.'.$donnees['Level'].'</h4>';
-                echo '</div>';
-                }
-            $reponse->closeCursor();
+        $reponse = $conn->query('SELECT * FROM User');
+        while ($donnees = $reponse->fetch()) {
+            echo '<div class="players" class="drag-item" draggable="true" ondragstart="JoueurID(event)" id="user-'.$donnees['ID_User'].'" data-id="'.$donnees['ID_User'].'">';
+            echo '<h3 id="playername">'.$donnees['Name'].'</h3>';
+            if ($donnees['ID_Class'] == 1) {
+                echo '<img class="imgclass" src="../images/Buccaneer.png" alt="Buccaneer">';
+            } elseif ($donnees['ID_Class'] == 2) {
+                echo '<img class="imgclass" src="../images/Mage.png" alt="Mage">';
+            } elseif ($donnees['ID_Class'] == 3) {
+                echo '<img class="imgclass" src="../images/Gunner.png" alt="Gunner">';
+            } elseif ($donnees['ID_Class'] == 4) {
+                echo '<img class="imgclass" src="../images/Cowboy.png" alt="Cowboy">';
+            } elseif ($donnees['ID_Class'] == 5) {
+                echo '<img class="imgclass" src="../images/Hazel.png" alt="Hazel">';
+            } elseif ($donnees['ID_Class'] == 6) {
+                echo '<img class="imgclass" src="../images/Cyber.png" alt="Cyber">';
+            }             
+            echo '<h4 id="playerlvl">Lvl.'.$donnees['Level'].'</h4>';
+            echo '</div>';
+        }
+        $reponse->closeCursor();
         ?>
-        <script>
-            function JoueurID(event) {
-                event.dataTransfer.setData("text/plain", event.target.id);
-            }
+    </div>
+    <div id="selecteam2" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)"></div>
+</div>
+<script>
 
-            function allowDrop(event) {
-                event.preventDefault();
-            }
+    function JoueurID(event) {
+        event.dataTransfer.setData("text/plain", event.target.id);
+    }
 
-            function dragOver(event) {
-                event.preventDefault();
-            }
+    function allowDrop(event) {
+        event.preventDefault();
+    }
 
-            
+    function dragOver(event) {
+        event.preventDefault();
+    }
+
     function drop(event) {
         event.preventDefault();
         var joueurId = event.dataTransfer.getData("text/plain");
@@ -96,6 +93,7 @@ include "./includes/connect.php";
 
         var joueursEquipe1Liste = equipe1.children;
         var joueursEquipe2Liste = equipe2.children;
+       
 
         if (targetTeam !== equipe1 && targetTeam !== equipe2 && targetTeam !== selectCentral) {
             return; // Ignorer le glisser-déposer si la cible n'est ni selecteam1, ni selecteam2, ni selectcentral
@@ -115,79 +113,50 @@ include "./includes/connect.php";
         if ((targetTeam === equipe1 && joueursEquipe1Liste.length === 5) || (targetTeam === equipe2 && joueursEquipe2Liste.length === 5)) {
             selectCentral.appendChild(joueur);
         } else {
+            var id = joueur.getAttribute('data-id')
+            var team = null
             targetTeam.appendChild(joueur);
+            if(targetTeam === equipe1){
+                team = 1;
+            }else if(targetTeam === equipe2){
+                team = 2;
+            }
+            if(id !== '' && team !== null){
+                /*let postObj = { 
+                    parseInt: id, 
+                    equipe: team
+                }
+                let post = JSON.stringify(postObj)*/
+                const url = "./includes/update_teams.php?user="+id+"&equipe="+team
+                let xhr = new XMLHttpRequest()
+                xhr.open('GET', url, true)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+                xhr.send();
+                xhr.onload = function () {
+                    if(xhr.status === 200) {
+                        console.log("Post successfully created!") 
+                    }
+                }
+                /*fetch("./includes/update_teams.php", {
+                    method: 'post',
+                    body: post,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
+                    return response.json()
+                }).then((res) => {
+                    if (res.status === 200) {
+                        console.log("Post successfully created!")
+                    }
+                }).catch((error) => {
+                    console.log(error)
+                })*/
+            }
         }
     }
 
+   
+</script>
 
-
-            function validerEquipes() {
-                var joueursEquipe1 = [];
-                var joueursEquipe2 = [];
-                var joueursEquipe1Factions = [];
-                var joueursEquipe2Factions = [];
-
-                var equipe1 = document.getElementById('selecteam1');
-                var equipe2 = document.getElementById('selecteam2');
-
-                var joueursEquipe1Liste = equipe1.children;
-                var joueursEquipe2Liste = equipe2.children;
-
-                // Vérification du nombre minimum de joueurs par équipe
-                if (joueursEquipe1Liste.length < 1 || joueursEquipe2Liste.length < 1) {
-                    alert('Il doit y avoir au moins 1 joueur par équipe. Veuillez ajouter des joueurs.');
-                    return;
-                }
-
-                // Vérification du nombre maximum de joueurs par équipe
-                if (joueursEquipe1Liste.length > 5 || joueursEquipe2Liste.length > 5) {
-                    alert("Chaque équipe ne peut pas avoir plus de 5 joueurs.");
-                    return;
-                }
-
-                for (var i = 0; i < joueursEquipe1Liste.length; i++) {
-                    var joueur = joueursEquipe1Liste[i];
-                    var joueurId = joueur.id;
-                    var factionSelect = joueur.closest('.dropdown').querySelector('select');
-                    var factionId = factionSelect.value;
-
-                    joueursEquipe1.push(joueurId);
-                    joueursEquipe1Factions.push(factionId);
-                }
-
-                for (var j = 0; j < joueursEquipe2Liste.length; j++) {
-                    var joueur = joueursEquipe2Liste[j];
-                    var joueurId = joueur.id;
-                    var factionSelect = joueur.closest('.dropdown').querySelector('select');
-                    var factionId = factionSelect.value;
-
-                    joueursEquipe2.push(joueurId);
-                    joueursEquipe2Factions.push(factionId);
-                }
-
-                // Vérification du choix des Factions
-                if (joueursEquipe1Factions.includes('selecteam1') || joueursEquipe2Factions.includes('selecteam2')) {
-                    alert('Veuillez sélectionner une faction pour chaque joueur.');
-                    return;
-                }
-
-                // Envoyer les données vers le script PHP pour les enregistrer dans la base de données
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "process_form.php", true);
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        window.location.href = "game.php"; // Rediriger vers la page de jeu après enregistrement des données
-                    }
-                };
-                xhr.send(
-                    "equipe1=" + JSON.stringify(joueursEquipe1) +
-                    "&equipe2=" + JSON.stringify(joueursEquipe2) +
-                    "&equipe1Factions=" + JSON.stringify(joueursEquipe1Factions) +
-                    "&equipe2Factions=" + JSON.stringify(joueursEquipe2Factions)
-                );
-            }
-        </script>
-    </div>
-    <div id="selecteam2" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)"></div>
-</div>
