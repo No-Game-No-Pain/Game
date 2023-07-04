@@ -15,8 +15,8 @@
   width: auto;
 }
 #historique {
+  background: rgb(217 217 217 / 23%);
   border-radius: 10px;
-  background: rgba(217, 217, 217, 0.70);
   overflow: auto;
   height: 231px;
   width: 100%;
