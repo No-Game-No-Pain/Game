@@ -224,8 +224,7 @@ function effectuerAttaque(attaquant, cible) {
       cible: cible
     };
 
-    let pourcentageAttaque = Math.floor(Math.random() * 21) + 10; // Valeur aléatoire entre 10 et 30
-    let degats = Math.floor(attaquant.attaque * (pourcentageAttaque / 100));
+    let degats = Math.floor(attaquant.attaque);
 
     cible.vie -= degats;
 
@@ -354,36 +353,6 @@ function demarrerCombat() {
     afficherHistoriqueAttaques();
   }, 400); // Interval en millisecondes (ici, 50 millisecondes)
 }
-
-function fetchLvlUpEquipe(team) {
-  fetch('http://localhost:8000/index.php?game', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(team),
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Mise à jour réussie :', data);
-      // Effectuez les actions nécessaires après la mise à jour, par exemple, afficher un message de succès ou recharger la page
-    })
-    .catch(error => {
-      console.error('Erreur lors de la mise à jour :', error);
-      // Gérez les erreurs de la requête, par exemple, afficher un message d'erreur à l'utilisateur
-    });
-}
-
-// Exemple d'utilisation après la fin du combat
-if (equipeTousMorts(equipe1Shuffled)) {
-  // L'équipe 2 a gagné, mettez à jour le niveau de l'équipe 2
-  fetchLvlUpEquipe(equipe2);
-} else {
-  // L'équipe 1 a gagné, mettez à jour le niveau de l'équipe 1
-  fetchLvlUpEquipe(equipe1);
-}
-
-
 
 // Vérifie si tous les joueurs d'une équipe ont une vie inférieure ou égale à zéro
 function equipeTousMorts(equipe) {
