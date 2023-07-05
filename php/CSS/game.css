@@ -48,6 +48,7 @@
   bottom: 245px;
 }
 #equipe1{
+  height: 100vh;
   transform: translate(-65px, 10px);
   display: flex;
   flex-direction: column;
@@ -73,8 +74,15 @@
   margin-bottom: 10px;
   flex-direction: column;
 }
+.entite:nth-child(4) {
+  transform: translate(-240px,-365px);
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-direction: column;
+}
 .entite:nth-child(5) {
-  transform: translate(169px,-341px);
+  transform: translate(-247px,-1006px);
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -101,4 +109,262 @@
 }
 .skale{
   transform: scaleX(-1);
+}
+.class_5 .equipe1{
+  width: 145px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Hazel-sprite.png);
+  height: 290px;
+  animation: changeImage 2s steps(1) ;
+}
+@keyframes changeImage {
+  0% {
+    background-position: 0 0;
+  }
+  9.42% {
+    background-position: -125px 0;
+  }
+  18.84% {
+    background-position: -250px 0;
+  }
+  28.26% {
+    background-position: -375px 0;
+  }
+  37.68% {
+    background-position: -500px 0;
+  }
+  47.10% {
+    background-position: -625px 0;
+  }
+  56.52% {
+    background-position: -750px 0;
+  }
+  65.94% {
+    background-position: -875px 0;
+  }
+  75.36% {
+    background-position: -1000px 0;
+  }
+  84.78% {
+    background-position: -1125px 0;
+  }
+  94.20% {
+    background-position: -1250px 0;
+  }
+  100% {
+    background-position: -1375px 0;
+  }
+}
+.class_5 .equipe2{
+  width: 145px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Hazel-sprite.png);
+  height: 290px;
+  animation: changeImage 2s steps(1) ;
+  transform: scaleX(-1);
+}
+@keyframes changeImage {
+  0% {
+    background-position: 0 0;
+  }
+  9.42% {
+    background-position: -125px 0;
+  }
+  18.84% {
+    background-position: -250px 0;
+  }
+  28.26% {
+    background-position: -375px 0;
+  }
+  37.68% {
+    background-position: -500px 0;
+  }
+  47.10% {
+    background-position: -625px 0;
+  }
+  56.52% {
+    background-position: -750px 0;
+  }
+  65.94% {
+    background-position: -875px 0;
+  }
+  75.36% {
+    background-position: -1000px 0;
+  }
+  84.78% {
+    background-position: -1125px 0;
+  }
+  94.20% {
+    background-position: -1250px 0;
+  }
+  100% {
+    background-position: -1375px 0;
+  }
+}
+
+.class_4 .equipe1{
+  width: 185px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Buccaneer-sprite.png);
+  animation: changeImage1 2s steps(1) ;
+  height: 290px;
+}
+@keyframes changeImage1 {
+  0% {
+    background-position: 0 0;
+  }
+  20% {
+    background-position: -185px 0;
+  }
+  40% {
+    background-position: -370px 0;
+  }
+  60% {
+    background-position: -555px 0;
+  }
+  80% {
+    background-position: -740px 0;
+  }
+  100% {
+    background-position: -905px 0;
+  }
+}
+.class_4 .equipe2{
+  width: 185px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Buccaneer-sprite.png);
+  animation: changeImage1 2s steps(1) ;
+  height: 290px;
+  transform: scaleX(-1);
+}
+@keyframes changeImage1 {
+  0% {
+    background-position: 0 0;
+  }
+  20% {
+    background-position: -185px 0;
+  }
+  40% {
+    background-position: -370px 0;
+  }
+  60% {
+    background-position: -555px 0;
+  }
+  80% {
+    background-position: -740px 0;
+  }
+  100% {
+    background-position: -905px 0;
+  }
+}
+.class_2 .equipe1{
+  width: 215px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Mage-sprite.png);
+  animation: changeImage2 2s steps(1) ;
+  height: 267px;
+}
+@keyframes changeImage2 {
+  0% {
+    background-position: 0 0;
+  }
+  20% {
+    background-position: -215px 0;
+  }
+  40% {
+    background-position: -430px 0;
+  }
+  60% {
+    background-position: -645px 0;
+  }
+}
+.class_2 .equipe2{
+  width: 215px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Mage-sprite.png);
+  animation: changeImage2 2s steps(1) ;
+  transform: scaleX(-1);
+  height: 267px;
+}
+@keyframes changeImage2 {
+  0% {
+    background-position: 0 0;
+  }
+  20% {
+    background-position: -215px 0;
+  }
+  40% {
+    background-position: -430px 0;
+  }
+  60% {
+    background-position: -645px 0;
+  }
+}
+.class_3 .equipe1{
+  width: 300px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Gunner-sprite.png);
+  animation: changeImage3 1s steps(1) ;
+  height: 267px;
+}
+@keyframes changeImage3 {
+  0% {
+    background-position: 0 0;
+  }
+  20% {
+    background-position: -315px 0;
+  }
+}
+.class_3 .equipe2{
+  width: 300px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Gunner-sprite.png);
+  animation: changeImage3 1s steps(1) ;
+  transform: scaleX(-1);
+  height: 267px;
+}
+@keyframes changeImage3 {
+  0% {
+    background-position: 0 0;
+  }
+  20% {
+    background-position: -315px 0;
+  }
+}
+.class_1 .equipe1{
+  width: 180px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Buccaneer-sprite.png);
+  animation: changeImage4 1s steps(1) ;
+  height: 200px;
+}
+@keyframes changeImage4 {
+  0% {
+    background-position: 0 0;
+  }
+  20% {
+    background-position: -450px 0;
+  }
+  40% {
+    background-position: -400px 0;
+  }
+}
+.class_1 .equipe2{
+  width: 180px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Buccaneer-sprite.png);
+  animation: changeImage4 1s steps(1) ;
+  transform: scaleX(-1);
+  height: 200px;
+}
+@keyframes changeImage4 {
+  0% {
+    background-position: 0 0;
+  }
+  20% {
+    background-position: -260px 0;
+  }
+  40% {
+    background-position: -400px 0;
+  }
 }

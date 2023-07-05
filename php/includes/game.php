@@ -150,40 +150,52 @@ function afficherEntites() {
   equipe1.forEach(function(entite) {
     var entiteElement = creerElementEntite(entite);
     entiteElement.classList.add("class_" + entite.classe.Class); // Ajouter la classe correspondante
+
+    var imageContainer = entiteElement.querySelector(".image-container"); // Sélectionner la div contenant l'image
+    imageContainer.classList.add("class_" + entite.classe.Class); // Ajouter la classe correspondante à la div de l'image
+    imageContainer.classList.add("equipe" + 1); // Ajouter la classe correspondante à l'équipe
+
     equipe1Container.appendChild(entiteElement);
   });
 
   equipe2.forEach(function(entite) {
     var entiteElement = creerElementEntite(entite);
     entiteElement.classList.add("class_" + entite.classe.Class); // Ajouter la classe correspondante
+
+    var imageContainer = entiteElement.querySelector(".image-container"); // Sélectionner la div contenant l'image
+    imageContainer.classList.add("class_" + entite.classe.Class); // Ajouter la classe correspondante à la div de l'image
+    imageContainer.classList.add("equipe" + 2); // Ajouter la classe correspondante à l'équipe
+
     equipe2Container.appendChild(entiteElement);
   });
 }
+
 
 // Crée un élément HTML représentant une entité
 function creerElementEntite(entite) {
   var entiteElement = document.createElement("div");
   entiteElement.classList.add("entite");
 
-  var imageElement = document.createElement("img");
-var classId = entite.classe.Class; // Obtient l'ID de la classe de l'entité
+  var imageContainer = document.createElement("div");
+  imageContainer.classList.add("image-container");
 
-// Condition pour déterminer quelle image charger en fonction de la classe de l'entité
-if (classId === 1) {
-  imageElement.src = "../images/Buccaneer.png";
-} else if (classId === 2) {
-  imageElement.src = "../images/Mage.png";
-} else if (classId === 3) {
-  imageElement.src = "../images/Gunner.png";
-} else if (classId === 4) {
-  imageElement.src = "../images/Cowboy.png";
-} else if (classId === 5) {
-  imageElement.src = "../images/Hazel.png";
-} else {
-  imageElement.src = "../images/Cyber.png";
-}
+  var classId = entite.classe.Class; // Obtient l'ID de la classe de l'entité
 
-entiteElement.appendChild(imageElement);
+  if (classId === 1) {
+    imageContainer.style.backgroundImage = "url('../images/Buccaneer-sprite.png')";
+  } else if (classId === 2) {
+    imageContainer.style.backgroundImage = "url('../images/Mage-sprite.png')";
+  } else if (classId === 3) {
+    imageContainer.style.backgroundImage = "url('../images/Gunner-sprite.png')";
+  } else if (classId === 4) {
+    imageContainer.style.backgroundImage = "url('../images/Cowboy-sprite.png')";
+  } else if (classId === 5) {
+    imageContainer.style.backgroundImage = "url('../images/Hazel-sprite.png')";
+  } else {
+    imageContainer.style.backgroundImage = "url('../images/Cyber-sprite.png')";
+  }
+
+  entiteElement.appendChild(imageContainer);
 
   var nomElement = document.createElement("span");
   nomElement.classList.add("nom");
