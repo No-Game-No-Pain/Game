@@ -36,7 +36,7 @@ $stmt->execute();
         </div>
     </div>
     <a href="index.php?add" id="returnbtn"><img src="./images/previouspage.png" alt="Page précédente"></a>
-    <a href="index.php?game" id="startgame"><img src="./images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a> 
+    <a href="index.php?game" onclick="launchGame()" id="startgame"><img src="./images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a> 
     <div id="dropbox"></div>   
     <div id="selecteam1" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)"></div>
     <div id="seleccentral" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)">
@@ -108,6 +108,7 @@ $stmt->execute();
             alert("L'équipe 2 ne peut pas avoir plus de 5 joueurs.");
             return;
         }
+            // Vérification du nombre minimum de joueurs par équipe
 
         // Si l'équipe a déjà 5 joueurs, remettre le joueur au milieu
         if ((targetTeam === equipe1 && joueursEquipe1Liste.length === 5) || (targetTeam === equipe2 && joueursEquipe2Liste.length === 5)) {
@@ -156,7 +157,32 @@ $stmt->execute();
             }
         }
     }
+    function launchGame(event) {
+    if (!checkTeams()) {
+        event.preventDefault(); // Annule le comportement par défaut du lien
+        alert("Il doit y avoir au moins 1 joueur par équipe. Veuillez ajouter des joueurs.");
+    }
+}
 
-   
+// Récupère le lien de lancement du jeu
+var startGameLink = document.getElementById('startgame');
+
+// Ajoute un événement de clic au lien
+startGameLink.addEventListener('click', launchGame);
+
+function checkTeams() {
+    var equipe1 = document.getElementById('selecteam1');
+    var equipe2 = document.getElementById('selecteam2');
+
+    var joueursEquipe1Liste = equipe1.children;
+    var joueursEquipe2Liste = equipe2.children;
+
+    if (joueursEquipe1Liste.length < 1 || joueursEquipe2Liste.length < 1) {
+        return false; // Empêche le lancement du lien
+    }
+
+    return true; // Permet le lancement du lien
+}
+
 </script>
 
