@@ -54,15 +54,15 @@
   bottom: 245px;
 }
 #equipe1{
-  height: 100%;
-  transform: translate(-57px, 10px);
+  height: 50%;
+  transform: translate(-57px, -50px);
   display: flex;
   flex-direction: column;
   
 }
 #equipe2{
-  height: 100%;
-  
+  height: 50%;
+  transform: translate(114px, -50px);
 }
 #equipe2 img{
   margin-right: 20px;
@@ -92,7 +92,7 @@
   flex-direction: column;
 }
 .entite:nth-child(5) {
-  transform: translate(-137px,-868px);
+  transform: translate(-133px,-692px);
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -517,10 +517,10 @@
   }
 }
 .class_5 .equipe1{
-  width: 145px;
+  width: 70px;
   background-repeat: no-repeat;
   background-image: url(../images/Hazel-sprite.png);
-  height: 290px;
+  height: 150px;
   animation: changeImage 2s steps(1) ;
 }
 @keyframes changeImage {
@@ -562,10 +562,10 @@
   }
 }
 .class_5 .equipe2{
-  width: 145px;
+  width: 70px;
   background-repeat: no-repeat;
   background-image: url(../images/Hazel-sprite.png);
-  height: 290px;
+  height: 157px;
   animation: changeImage 2s steps(1) ;
   transform: scaleX(-1);
 }
@@ -609,11 +609,11 @@
 }
 
 .class_4 .equipe1{
-  width: 185px;
+  width: 107px;
   background-repeat: no-repeat;
   background-image: url(../images/Buccaneer-sprite.png);
   animation: changeImage1 2s steps(1) ;
-  height: 290px;
+  height: 146px;
 }
 @keyframes changeImage1 {
   0% {
@@ -636,11 +636,11 @@
   }
 }
 .class_4 .equipe2{
-  width: 185px;
+  width: 107px;
   background-repeat: no-repeat;
   background-image: url(../images/Buccaneer-sprite.png);
   animation: changeImage1 2s steps(1) ;
-  height: 290px;
+  height: 146px;
   transform: scaleX(-1);
 }
 @keyframes changeImage1 {
@@ -648,19 +648,16 @@
     background-position: 0 0;
   }
   20% {
-    background-position: -185px 0;
+    background-position: -210px 0;
   }
   40% {
-    background-position: -370px 0;
+    background-position: -325px 0;
   }
   60% {
-    background-position: -555px 0;
+    background-position: -430px 0;
   }
   80% {
-    background-position: -740px 0;
-  }
-  100% {
-    background-position: -905px 0;
+    background-position: -540px 0;
   }
 }
 .class_2 .equipe1{
@@ -707,7 +704,7 @@
   }
 }
 .class_3 .equipe1{
-  width: 170px;
+  width: 150px;
   background-repeat: no-repeat;
   background-image: url(../images/Gunner-sprite.png);
   animation: changeImage3 1s steps(1) ;
@@ -722,7 +719,7 @@
   }
 }
 .class_3 .equipe2{
-  width: 170px;
+  width: 150px;
   background-repeat: no-repeat;
   background-image: url(../images/Gunner-sprite.png);
   animation: changeImage3 1s steps(1) ;
@@ -738,25 +735,25 @@
   }
 }
 .class_1 .equipe1{
-  width: 180px;
+  width: 115px;
   background-repeat: no-repeat;
   background-image: url(../images/Buccaneer-sprite.png);
   animation: changeImage4 1s steps(1) ;
-  height: 200px;
+  height: 161px;
 }
 @keyframes changeImage4 {
   0% {
     background-position: 0 0;
   }
-  20% {
-    background-position: -450px 0;
+  50% {
+    background-position: -135px 0;
   }
-  40% {
-    background-position: -400px 0;
+  100% {
+    background-position: -444px 0;
   }
 }
 .class_1 .equipe2{
-  width: 180px;
+  width: 115px;
   background-repeat: no-repeat;
   background-image: url(../images/Buccaneer-sprite.png);
   animation: changeImage4 1s steps(1) ;
@@ -767,61 +764,60 @@
   0% {
     background-position: 0 0;
   }
-  20% {
-    background-position: -260px 0;
+  50% {
+    background-position: -135px 0;
   }
-  40% {
-    background-position: -400px 0;
+  100% {
+    background-position: -444px 0;
   }
 }
 .class_6 .equipe1{
-  width: 205px;
+  width: 110px;
   background-repeat: no-repeat;
   background-image: url(../images/Cyber-sprite.png);
   animation: changeImage5 1s steps(1) ;
-  height: 200px;
+  height: 173px;
 }
 @keyframes changeImage5 {
   0% {
     background-position: 0 0;
   }
   20% {
-    background-position: -205px 0;
+    background-position: -115px 0;
   }
   40% {
-    background-position: -410px 0;
+    background-position: -230px 0;
   }
   60% {
-    background-position: -615px 0;
+    background-position: -345px 0;
   }
   80% {
-    background-position: -820px 0;
+    background-position: -460px 0;
   }
 
 }
 .class_6 .equipe2{
-  width: 205px;
+  width: 115px;
   background-repeat: no-repeat;
   background-image: url(../images/Cyber-sprite.png);
   animation: changeImage5 1s steps(1) ;
   transform: scaleX(-1);
-  height: 200px;
+  height: 147px;
 }
 @keyframes changeImage5 {
   0% {
     background-position: 0 0;
   }
   20% {
-    background-position: -205px 0;
+    background-position: -115px 0;
   }
   40% {
-    background-position: -410px 0;
+    background-position: -230px 0;
   }
   60% {
-    background-position: -615px 0;
+    background-position: -345px 0;
   }
   80% {
-    background-position: -820px 0;
+    background-position: -460px 0;
   }
-
 }
