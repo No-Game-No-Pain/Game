@@ -516,11 +516,13 @@
     opacity: 1;
   }
 }
-.class_5 .equipe1{
+.image-container.class_5.equipe1{
   width: 70px;
   background-repeat: no-repeat;
   background-image: url(../images/Hazel-sprite.png);
   height: 150px;
+}
+.image-container.class_5.equipe1.add{
   animation: changeImage 2s steps(1) ;
 }
 @keyframes changeImage {
@@ -561,13 +563,15 @@
     background-position: -1375px 0;
   }
 }
-.class_5 .equipe2{
+.image-container.class_5.equipe2{
   width: 70px;
   background-repeat: no-repeat;
   background-image: url(../images/Hazel-sprite.png);
   height: 157px;
-  animation: changeImage 2s steps(1) ;
   transform: scaleX(-1);
+}
+.image-container.class_5.equipe2.add{
+  animation: changeImage 3s steps(1) ;
 }
 @keyframes changeImage {
   0% {
@@ -608,12 +612,14 @@
   }
 }
 
-.class_4 .equipe1{
+.image-container.class_4.equipe1{
   width: 107px;
   background-repeat: no-repeat;
   background-image: url(../images/Buccaneer-sprite.png);
-  animation: changeImage1 2s steps(1) ;
   height: 146px;
+}
+.image-container.class_4.equipe1.add{
+  animation: changeImage1 3s steps(1) ;
 }
 @keyframes changeImage1 {
   0% {
@@ -635,13 +641,15 @@
     background-position: -905px 0;
   }
 }
-.class_4 .equipe2{
+.image-container.class_4.equipe2{
   width: 107px;
   background-repeat: no-repeat;
   background-image: url(../images/Buccaneer-sprite.png);
-  animation: changeImage1 2s steps(1) ;
   height: 146px;
   transform: scaleX(-1);
+}
+.image-container.class_4.equipe2.add {
+  animation: changeImage1 3s steps(1) ;
 }
 @keyframes changeImage1 {
   0% {
@@ -660,12 +668,14 @@
     background-position: -540px 0;
   }
 }
-.class_2 .equipe1{
+.image-container.class_2.equipe1{
   width: 215px;
   background-repeat: no-repeat;
   background-image: url(../images/Mage-sprite.png);
-  animation: changeImage2 2s steps(1) ;
   height: 267px;
+}
+.image-container.class_2.equipe1.add{
+  animation: changeImage2 3s steps(1) ;
 }
 @keyframes changeImage2 {
   0% {
@@ -681,13 +691,15 @@
     background-position: -645px 0;
   }
 }
-.class_2 .equipe2{
+.image-container.class_2.equipe2{
   width: 215px;
   background-repeat: no-repeat;
   background-image: url(../images/Mage-sprite.png);
-  animation: changeImage2 2s steps(1) ;
   transform: scaleX(-1);
   height: 267px;
+}
+.image-container.class_2.equipe2.add{
+  animation: changeImage2 3s steps(1) ;
 }
 @keyframes changeImage2 {
   0% {
@@ -703,12 +715,15 @@
     background-position: -645px 0;
   }
 }
-.class_3 .equipe1{
+.image-container.class_3.equipe1{
   width: 150px;
   background-repeat: no-repeat;
   background-image: url(../images/Gunner-sprite.png);
-  animation: changeImage3 1s steps(1) ;
+  animation: changeImage3 3s steps(1) ;
   height: 155px;
+}
+.image-container.class_3.equipe1.add{
+  animation: changeImage3 3s steps(1) ;
 }
 @keyframes changeImage3 {
   0% {
@@ -718,14 +733,16 @@
     background-position: -170px 0;
   }
 }
-.class_3 .equipe2{
+.image-container.class_3.equipe2{
   width: 150px;
   background-repeat: no-repeat;
   background-image: url(../images/Gunner-sprite.png);
-  animation: changeImage3 1s steps(1) ;
   transform: scaleX(-1);
   height: 155px;
 }
+.image-container.class_3.equipe2.add{
+  animation: changeImage3 3s steps(1) infinite ;
+}
 @keyframes changeImage3 {
   0% {
     background-position: 0 0;
@@ -734,12 +751,14 @@
     background-position: -170px 0;
   }
 }
-.class_1 .equipe1{
+.image-container.class_1.equipe1{
   width: 115px;
   background-repeat: no-repeat;
   background-image: url(../images/Buccaneer-sprite.png);
-  animation: changeImage4 1s steps(1) ;
   height: 161px;
+}
+.image-container.class_1.equipe1.add{
+  animation: changeImage4 3s steps(1)  infinite ;
 }
 @keyframes changeImage4 {
   0% {
@@ -752,14 +771,16 @@
     background-position: -444px 0;
   }
 }
-.class_1 .equipe2{
+.image-container.class_1.equipe2{
   width: 115px;
   background-repeat: no-repeat;
   background-image: url(../images/Buccaneer-sprite.png);
-  animation: changeImage4 1s steps(1) ;
   transform: scaleX(-1);
   height: 200px;
 }
+.image-container.class_1.equipe2.add{
+  animation: changeImage4 3s steps(1) infinite  ;
+}
 @keyframes changeImage4 {
   0% {
     background-position: 0 0;
@@ -771,12 +792,14 @@
     background-position: -444px 0;
   }
 }
-.class_6 .equipe1{
+.image-container.class_6.equipe1{
   width: 110px;
   background-repeat: no-repeat;
   background-image: url(../images/Cyber-sprite.png);
-  animation: changeImage5 1s steps(1) ;
   height: 173px;
+}
+.image-container.class_6.equipe1.add{
+  animation: changeImage5 3s steps(1) infinite ;
 }
 @keyframes changeImage5 {
   0% {
@@ -796,13 +819,15 @@
   }
 
 }
-.class_6 .equipe2{
+.image-container.class_6.equipe2{
   width: 115px;
   background-repeat: no-repeat;
   background-image: url(../images/Cyber-sprite.png);
-  animation: changeImage5 1s steps(1) ;
   transform: scaleX(-1);
   height: 147px;
+}
+.image-container.class_6.equipe2.add{
+  animation: changeImage5 3s steps(1) infinite  ;
 }
 @keyframes changeImage5 {
   0% {

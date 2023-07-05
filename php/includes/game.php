@@ -213,7 +213,18 @@ function creerElementEntite(entite) {
   return entiteElement;
 }
 
-// Effectue une attaque entre l'attaquant et la cible
+function ajouterEtRetirerClasseAdd() {
+  var images = document.querySelectorAll(".image-container");
+
+  images.forEach(function(image) {
+    image.classList.add("add");
+
+    setTimeout(function() {
+      image.classList.remove("add");
+    }, 1000); // Durée en millisecondes pendant laquelle la classe "add" est affichée
+  });
+}
+
 function effectuerAttaque(attaquant, cible) {
   if (
     attaquant &&
@@ -247,8 +258,22 @@ function effectuerAttaque(attaquant, cible) {
     if (cible.mettreAJourBarreDeVie) {
       cible.mettreAJourBarreDeVie(); // Met à jour la barre de vie de la cible si la méthode existe
     }
+
+    ajouterEtRetirerClasseAdd(); // Ajoute et retire la classe "add" à chaque attaque
+
+    // Définir un intervalle à chaque attaque
+    var intervalID = setInterval(function() {
+      ajouterEtRetirerClasseAdd();
+    }, 1000); // Durée en millisecondes entre chaque ajout et suppression de la classe "add"
+
+    // Arrêter l'intervalle après un certain délai (par exemple, 2000 millisecondes)
+    setTimeout(function() {
+      clearInterval(intervalID);
+    }, 2000); // Durée en millisecondes après laquelle l'intervalle est arrêté
   }
 }
+
+
 
 // Affiche l'historique des attaques dans le HTML
 function afficherHistoriqueAttaques() {
