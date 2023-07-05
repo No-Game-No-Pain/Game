@@ -19,7 +19,7 @@ console.log(backgroundChoice);
 if (backgroundChoice) {
   // Appliquer le background récupéré
 document.getElementById("game").style.backgroundImage = `url('${backgroundChoice}')`;}
-else{
+else if(backgroundChoice == NULL){
   document.getElementById("game").style.backgroundImage = `url('./images/castlebridge.png')`;
 }
 var victory = new Audio('./images/Victory.mp3');
@@ -40,22 +40,6 @@ muteButton.addEventListener('click', function() {
   isMuted = !isMuted; // Inverser l'état du mute
 });
     
-    // Exemple de données d'entités
- var equipe1 = [
-  { nom: "Entité 1", classe: "Guerrier", vie: 100, attaque: 20 },
-  { nom: "Entité 2", classe: "Mage", vie: 80, attaque: 30 },
-  { nom: "Entité 3", classe: "Archer", vie: 90, attaque: 25 },
-  { nom: "Entité 4", classe: "Voleur", vie: 70, attaque: 15 },
-  { nom: "Entité 5", classe: "Paladin", vie: 120, attaque: 18 }
-];
-
-var equipe2 = [
-  { nom: "Entité 6", classe: "Guerrier", vie: 110, attaque: 22 },
-  { nom: "Entité 7", classe: "Mage", vie: 75, attaque: 35 },
-  { nom: "Entité 8", classe: "Archer", vie: 85, attaque: 28 },
-  { nom: "Entité 9", classe: "Voleur", vie: 60, attaque: 17 },
-  { nom: "Entité 10", classe: "Paladin", vie: 100, attaque: 20 }
-];
 
 const Equipen1 = <?php 
   $response = $conn->query('SELECT * FROM User WHERE Team = 1');
@@ -70,7 +54,7 @@ const Equipen1 = <?php
   }
   echo json_encode($team1Data);
 ?>;
-
+  
 const Equipen2 = <?php 
   $response = $conn->query('SELECT * FROM User WHERE Team = 2');
   $team2Data = array();
@@ -84,7 +68,6 @@ const Equipen2 = <?php
   }
   echo json_encode($team2Data);
 ?>;
-
 const Classes = <?php
   $response = $conn->query('SELECT * FROM Class');
   $DataClasses = array();
@@ -107,6 +90,13 @@ equipe1 = Equipen1.map((data, index) => {
     attaque: getClassAttackById(data.ID_Class1)
   };
 });
+/*for (var i = 0; i < Equipen1.length; i++) {
+  var joueur = Equipen1[i];
+    // Accéder au niveau (Level) du joueur
+    var niveau = joueur.Level1;
+
+  // Utilisez le niveau comme bon vous semble
+  console.log(niveau);}*/
 
 equipe2 = Equipen2.map((data, index) => {
   const classData = getClassById(data.ID_Class);
@@ -131,6 +121,7 @@ function getClassAttackById(id) {
 console.table(equipe1);
 console.table(equipe2);
 console.table(Classes);
+
 var historiqueAttaques = [];
 
 var equipe1Index = 0; // Indice de l'entité active de l'équipe 1
@@ -300,10 +291,75 @@ function demarrerCombat() {
         resultatCombat.textContent = "Équipe 2 gagne !";
         backgroundSound.volume = 0; 
         victory.play ();
+
+
+
+        <?php
+                        $reponse = $conn->query('SELECT * FROM `User` WHERE Team = 2;');
+                        $userData = array();
+                        
+                        while ($donnees = $reponse->fetch()) {
+                          $userData[] = array(
+                            'ID_User' => $donnees['ID_User'],
+                            'Level' => $donnees['Level']
+                        );
+                        }
+                        
+                        $reponse->closeCursor();
+                        ?>
+                       const userData = <?php echo json_encode($userData); ?>;
+    console.log(userData);
+
+    for (let i = 0; i < userData.length; i++) {
+        const idUser = userData[i].ID_User;
+        const level = userData[i].Level;
+        const url = "./includes/levelup.php?user=" + idUser + "&level=" + level;
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+        xhr.send();
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log("Post successfully created!");
+            }
+        };
+    }
       } else {
         resultatCombat.textContent = "Équipe 1 gagne !";
         backgroundSound.volume = 0; 
         victory.play ();
+
+                <?php
+                     $reponse = $conn->query('SELECT * FROM `User` WHERE Team = 1;');
+                     $userData = array();  
+                    while ($donnees = $reponse->fetch()) {
+                   $userData[] = array(
+                  'ID_User' => $donnees['ID_User'],
+                 'Level' => $donnees['Level']
+                );
+                }
+                                
+                $reponse->closeCursor();
+               ?>
+                              const userData = <?php echo json_encode($userData); ?>;
+            console.log(userData);
+
+            for (let i = 0; i < userData.length; i++) {
+                const idUser = userData[i].ID_User;
+                const level = userData[i].Level;
+                const url = "./includes/levelup.php?user=" + idUser + "&level=" + level;
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+                xhr.send();
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        console.log("Post successfully created!");
+                    }
+                };
+            }
+
+
       }
     }
 
