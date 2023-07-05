@@ -6,10 +6,9 @@ include "./includes/connect.php";
                 <div class="mute">
                     <br><br><br>
                     <br><br><br>
-                    <br><br><br>
-                </div>
-    <div class="formcontainer">
-        <form method="post" action="includes/action.php" enctype="multipart/form-data">
+        </div>
+        <div class="formcontainer">
+            <form method="post" action="includes/action.php" enctype="multipart/form-data">
         
                 <div class="input-name">
                     <label for="inputField" class="borders"> Nom du joueur :  </label>
@@ -45,7 +44,7 @@ include "./includes/connect.php";
                         <button type="submit" value="remove" id="removeuser" class="remove borders" name="REMOVE">Supprimer</button>
                 </div>
             </form>
-</div>        
+        </div>        
             
             <div class="description1 ">
                 <div class="list borders" style= "height: 100%; font-size: 30px;" >
@@ -111,27 +110,27 @@ include "./includes/connect.php";
                     <h3>Choix de l'Arène :</h3>
                             <div class="slider">
                                 <div class="slider__slides">
-                                <div class="slider__slide active">
-                                    <img id="bg1" src="./images/castlebridge.png" alt="background castle" />
+                                    <div class="slider__slide active">
+                                        <img id="bg1" src="./images/castlebridge.png" alt="background castle" />
+                                    </div>
+                                    <div class="slider__slide">
+                                        <img id="bg2" src="./images/forestbridge.png" alt="background forest" />
+                                    </div>
+                                    <div class="slider__slide">
+                                        <img id="bg3" src="./images/skybridge.png"alt="background sky"  />
+                                    </div>
+                                    </div>
+                                    <div id="nav-button--prev" class="slider__nav-button"></div>
+                                    <div id="nav-button--next" class="slider__nav-button"></div>
+                                    <div class="slider__nav">
+                                    <div class="slider__navlink active"></div>
+                                    <div class="slider__navlink"></div>
+                                    <div class="slider__navlink"></div>
+                                    </div>
                                 </div>
-                                <div class="slider__slide">
-                                    <img id="bg2" src="./images/forestbridge.png" alt="background forest" />
-                                </div>
-                                <div class="slider__slide">
-                                    <img id="bg3" src="./images/skybridge.png"alt="background sky"  />
-                                </div>
-                                </div>
-                                <div id="nav-button--prev" class="slider__nav-button"></div>
-                                <div id="nav-button--next" class="slider__nav-button"></div>
-                                <div class="slider__nav">
-                                <div class="slider__navlink active"></div>
-                                <div class="slider__navlink"></div>
-                                <div class="slider__navlink"></div>
-                                </div>
-                            </div>
                             
 
-                </div>
+                            </div>
             </div>
             <div class="grid11">
                 <a href="index.php?select">
@@ -151,52 +150,52 @@ include "./includes/connect.php";
         <script>
             
 
-//choix slide
-let slides = document.getElementsByClassName("slider__slide");
-let navlinks = document.getElementsByClassName("slider__navlink");
-let currentSlide = 0;
+                //choix slide
+                let slides = document.getElementsByClassName("slider__slide");
+                let navlinks = document.getElementsByClassName("slider__navlink");
+                let currentSlide = 0;
 
-document.getElementById("nav-button--next").addEventListener("click", () => {
-  changeSlide(currentSlide + 1);
-});
+                document.getElementById("nav-button--next").addEventListener("click", () => {
+                changeSlide(currentSlide + 1);
+                });
 
-document.getElementById("nav-button--prev").addEventListener("click", () => {
-  changeSlide(currentSlide - 1);
-});
+                document.getElementById("nav-button--prev").addEventListener("click", () => {
+                changeSlide(currentSlide - 1);
+                });
 
-function changeSlide(moveTo) {
-  if (moveTo >= slides.length) {
-    moveTo = 0;
-  }
-  if (moveTo < 0) {
-    moveTo = slides.length - 1;
-  }
+                function changeSlide(moveTo) {
+                if (moveTo >= slides.length) {
+                    moveTo = 0;
+                }
+                if (moveTo < 0) {
+                    moveTo = slides.length - 1;
+                }
 
-  slides[currentSlide].classList.toggle("active");
-  navlinks[currentSlide].classList.toggle("active");
-  slides[moveTo].classList.toggle("active");
-  navlinks[moveTo].classList.toggle("active");
+                slides[currentSlide].classList.toggle("active");
+                navlinks[currentSlide].classList.toggle("active");
+                slides[moveTo].classList.toggle("active");
+                navlinks[moveTo].classList.toggle("active");
 
-  currentSlide = moveTo;
+                currentSlide = moveTo;
 
-  changeBackground(slides[currentSlide]);
-}
+                changeBackground(slides[currentSlide]);
+                }
 
-function changeBackground(slide) {
-  let imageUrl = slide.querySelector("img").src;
-  //document.getElementById("game").style.backgroundImage = `url('${imageUrl}')`;
+                function changeBackground(slide) {
+                let imageUrl = slide.querySelector("img").src;
+                //document.getElementById("game").style.backgroundImage = `url('${imageUrl}')`;
 
-  // Stocker le choix de background dans le stockage local
-  localStorage.setItem('backgroundChoice', imageUrl);
-}
+                // Stocker le choix de background dans le stockage local
+                localStorage.setItem('backgroundChoice', imageUrl);
+                }
 
-document.querySelectorAll('.slider__navlink').forEach((bullet, bulletIndex) => {
-  bullet.addEventListener('click', () => {
-    if (currentSlide !== bulletIndex) {
-      changeSlide(bulletIndex);
-    }
-  });
-});
+                document.querySelectorAll('.slider__navlink').forEach((bullet, bulletIndex) => {
+                bullet.addEventListener('click', () => {
+                    if (currentSlide !== bulletIndex) {
+                    changeSlide(bulletIndex);
+                    }
+                });
+                });
 
 
 
@@ -204,4 +203,4 @@ document.querySelectorAll('.slider__navlink').forEach((bullet, bulletIndex) => {
         </script>
         
         
-        </div>
+    </div>
