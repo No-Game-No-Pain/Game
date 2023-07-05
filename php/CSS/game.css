@@ -54,10 +54,14 @@
   bottom: 245px;
 }
 #equipe1{
-  height: 100vh;
-  transform: translate(-65px, 10px);
+  height: 100%;
+  transform: translate(-57px, 10px);
   display: flex;
   flex-direction: column;
+  
+}
+#equipe2{
+  height: 100%;
   
 }
 #equipe2 img{
@@ -88,7 +92,7 @@
   flex-direction: column;
 }
 .entite:nth-child(5) {
-  transform: translate(-247px,-1006px);
+  transform: translate(-137px,-868px);
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -703,34 +707,34 @@
   }
 }
 .class_3 .equipe1{
-  width: 300px;
+  width: 170px;
   background-repeat: no-repeat;
   background-image: url(../images/Gunner-sprite.png);
   animation: changeImage3 1s steps(1) ;
-  height: 267px;
+  height: 155px;
 }
 @keyframes changeImage3 {
   0% {
     background-position: 0 0;
   }
   20% {
-    background-position: -315px 0;
+    background-position: -170px 0;
   }
 }
 .class_3 .equipe2{
-  width: 300px;
+  width: 170px;
   background-repeat: no-repeat;
   background-image: url(../images/Gunner-sprite.png);
   animation: changeImage3 1s steps(1) ;
   transform: scaleX(-1);
-  height: 267px;
+  height: 155px;
 }
 @keyframes changeImage3 {
   0% {
     background-position: 0 0;
   }
   20% {
-    background-position: -315px 0;
+    background-position: -170px 0;
   }
 }
 .class_1 .equipe1{
@@ -769,4 +773,55 @@
   40% {
     background-position: -400px 0;
   }
+}
+.class_6 .equipe1{
+  width: 205px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Cyber-sprite.png);
+  animation: changeImage5 1s steps(1) ;
+  height: 200px;
+}
+@keyframes changeImage5 {
+  0% {
+    background-position: 0 0;
+  }
+  20% {
+    background-position: -205px 0;
+  }
+  40% {
+    background-position: -410px 0;
+  }
+  60% {
+    background-position: -615px 0;
+  }
+  80% {
+    background-position: -820px 0;
+  }
+
+}
+.class_6 .equipe2{
+  width: 205px;
+  background-repeat: no-repeat;
+  background-image: url(../images/Cyber-sprite.png);
+  animation: changeImage5 1s steps(1) ;
+  transform: scaleX(-1);
+  height: 200px;
+}
+@keyframes changeImage5 {
+  0% {
+    background-position: 0 0;
+  }
+  20% {
+    background-position: -205px 0;
+  }
+  40% {
+    background-position: -410px 0;
+  }
+  60% {
+    background-position: -615px 0;
+  }
+  80% {
+    background-position: -820px 0;
+  }
+
 }
