@@ -5,6 +5,7 @@ include "./includes/connect.php";
 <div id="muteButton" class="mutes" style="position: absolute;right: 0px;padding: 20px;top:0px">
         <img src="./images/mute.jpg" alt="mute">
     </div>
+  <div id="restartacc"></div>
   <div id="equipe1">
   </div>
     <div id="equipe2">
@@ -71,6 +72,15 @@ const Equipen1 = <?php
   echo json_encode($team1Data);
 ?>;
 
+for (var i = 0; i < Equipen1.length; i++) {
+  var joueur = Equipen1[i];
+    // Accéder au niveau (Level) du joueur
+    var niveau = joueur.Level1;
+  
+  // Utilisez le niveau comme bon vous semble
+  console.log(niveau);}
+
+
 const Equipen2 = <?php 
   $response = $conn->query('SELECT * FROM User WHERE Team = 2');
   $team2Data = array();
@@ -85,6 +95,14 @@ const Equipen2 = <?php
   echo json_encode($team2Data);
 ?>;
 
+for (var i = 0; i < Equipen2.length; i++) {
+  var joueur = Equipen2[i];
+    // Accéder au niveau (Level) du joueur
+    var niveau = joueur.Level;
+  
+  // Utilisez le niveau comme bon vous semble
+  console.log(niveau);}
+
 const Classes = <?php
   $response = $conn->query('SELECT * FROM Class');
   $DataClasses = array();
@@ -97,6 +115,7 @@ const Classes = <?php
   }
   echo json_encode($DataClasses);
 ?>;
+
 
 equipe1 = Equipen1.map((data, index) => {
   const classData = getClassById(data.ID_Class1);
@@ -300,12 +319,47 @@ function demarrerCombat() {
         resultatCombat.textContent = "Équipe 2 gagne !";
         backgroundSound.volume = 0; 
         victory.play ();
-      } else {
+        var winnerT1 = "2";
+        updateLevelT2(winnerT1);
+        
+      } 
+      else {
         resultatCombat.textContent = "Équipe 1 gagne !";
         backgroundSound.volume = 0; 
         victory.play ();
+        var winnerT2 = "1";
+        updateLevelT1(winnerT2);
       }
+        // Boutons accueil et restart
+        // Bouton ACC
+      var bouton = document.createElement("button");
+        bouton.innerHTML = "<span class='glowing-txt'>A<span class='faulty-letter'>CC</span>UEIL</span>"; // Texte du bouton
+        bouton.id = "btnacc";
+
+        bouton.addEventListener("click", function() {
+        // Rediriger vers une autre page au clic sur le bouton
+        window.location.href = "index.php?"; // Remplacez l'URL par l'adresse de la page de destination
+        });
+
+        // Ajouter le bouton à un élément existant de la page
+        var conteneur = document.getElementById("restartacc"); // Remplacez "conteneur" par l'ID de l'élément où vous souhaitez ajouter le bouton
+        conteneur.appendChild(bouton);
+
+              // Bouton RESTART
+      var bouton = document.createElement("button");
+        bouton.innerHTML = "<span class='glowing-txt2'>R<span class='faulty-letter2'>E</span>START</span>"; // Texte du bouton
+        bouton.id = "btnrestart";
+
+        bouton.addEventListener("click", function() {
+          // Rediriger vers une autre page au clic sur le bouton
+          window.location.href = "index.php?select"; // Remplacez l'URL par l'adresse de la page de destination
+        });
+
+        // Ajouter le bouton à un élément existant de la page
+        var conteneur = document.getElementById("restartacc"); // Remplacez "conteneur" par l'ID de l'élément où vous souhaitez ajouter le bouton
+        conteneur.appendChild(bouton);
     }
+    
 
     // Attaque de l'équipe qui attaque
     var attaquant, cible;
@@ -380,6 +434,42 @@ function shuffle(array) {
 }
 
 });
+
+function updateLevelT1(winnerT1) {
+        var xhr = new XMLHttpRequest();
+        var url = './includes/update_levelT1.php';
+        var lvl = 'niveau';
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Succès de la requête AJAX
+                console.log(xhr.responseText);
+            }
+        };
+
+        xhr.open('GET', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('winner=' + encodeURIComponent(winnerT1));
+    }
+
+
+    function updateLevelT2(winnerT2) {
+        var xhr = new XMLHttpRequest();
+        var url = './includes/update_levelT2.php';
+        var lvl = 'niveau';
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Succès de la requête AJAX
+                console.log(xhr.responseText);
+            }
+        };
+
+        xhr.open('GET', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('winner=' + encodeURIComponent(winnerT2));
+    }
+
 
   </script>
 
