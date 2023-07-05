@@ -5,38 +5,41 @@ $stmt->execute();
 ?>
 <div id="bgselect">
     <div id="team1">
-        <h2 class="Imprint">Équipe 1</h2>
-        <div class="dropdown">
-            <select class="selectFac">
-                <?php
-                $reponse = $conn->query('SELECT * FROM Personalized');
-                while ($donnees = $reponse->fetch()) {
-                    echo '<option value="'.$donnees['ID_Personalized'].'">' .$donnees['Name_Personalized']. '</option>';
-                }
-                $reponse->closeCursor();
-                ?>
-            </select>
-        </div>
+            <h2 class="Imprint">Équipe 1</h2>
+            <div class="dropdown">
+                <select class="selectFac" name="FactionG1" id="FactionG1">
+                    <?php
+                    $reponse = $conn->query('SELECT * FROM Personalized');
+                    while ($donnees = $reponse->fetch()) {
+                        echo '<option value="'.$donnees['ID_Personalized'].'">' .$donnees['Name_Personalized']. '</option>';
+                    }
+                    $reponse->closeCursor();
+                    ?>
+                </select>
+            </div>
+        
     </div>
     <div id="choix">
         <h2 class="Imprint">Choix des équipes</h2>
     </div>
     <div id="team2">
-        <h2 class="Imprint">Équipe 2</h2>
-        <div class="dropdown">
-            <select class="selectFac">
-                <?php
-                $reponse = $conn->query('SELECT * FROM Personalized');
-                while ($donnees = $reponse->fetch()) {
-                    echo '<option value="'.$donnees['ID_Personalized'].'">' .$donnees['Name_Personalized']. '</option>';
-                }
-                $reponse->closeCursor();
-                ?>
-            </select>
-        </div>
+        
+            <h2 class="Imprint">Équipe 2</h2>
+            <div class="dropdown">
+                <select class="selectFac" id="FactionG2" name="FactionG2">
+                    <?php
+                    $reponse = $conn->query('SELECT * FROM Personalized');
+                    while ($donnees = $reponse->fetch()) {
+                        echo '<option value="'.$donnees['ID_Personalized'].'">' .$donnees['Name_Personalized']. '</option>';
+                    }
+                    $reponse->closeCursor();
+                    ?>
+                </select>
+            </div>
+        
     </div>
-    <a href="index.php?add" id="returnbtn"><img src="./images/previouspage.png" alt="Page précédente"></a>
-    <a href="index.php?game" id="startgame"><img src="./images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a> 
+    
+    <a href="index.php?game" type="submit" name="start" id="startgame"><img src="./images/pressstart.png" height="100%" alt="Appuyez pour lancer le jeu"></a> 
     <div id="dropbox"></div>   
     <div id="selecteam1" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)"></div>
     <div id="seleccentral" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)">
@@ -65,6 +68,7 @@ $stmt->execute();
         ?>
     </div>
     <div id="selecteam2" class="drop-target" ondragover="dragOver(event)" ondrop="drop(event)"></div>
+    <a href="index.php?add" id="returnbtn"><img src="./images/previouspage.png" alt="Page précédente"></a>
 </div>
 <script>
 
@@ -93,7 +97,12 @@ $stmt->execute();
 
         var joueursEquipe1Liste = equipe1.children;
         var joueursEquipe2Liste = equipe2.children;
-       
+        var selectElement1 = document.getElementById("FactionG1");
+        var selectedValue1 = selectElement1.value;
+        console.log(selectedValue1);
+        var selectElement2 = document.getElementById("FactionG2");
+        var selectedValue2 = selectElement2.value;
+        console.log(selectedValue2);
 
         if (targetTeam !== equipe1 && targetTeam !== equipe2 && targetTeam !== selectCentral) {
             return; // Ignorer le glisser-déposer si la cible n'est ni selecteam1, ni selecteam2, ni selectcentral
@@ -114,12 +123,15 @@ $stmt->execute();
             selectCentral.appendChild(joueur);
         } else {
             var id = joueur.getAttribute('data-id')
-            var team = null
+            var team = null;
+            var faction = 1;
             targetTeam.appendChild(joueur);
             if(targetTeam === equipe1){
                 team = 1;
+                faction = selectedValue1;
             }else if(targetTeam === equipe2){
                 team = 2;
+                faction = selectedValue2;
             }
             if(id !== '' && team !== null){
                 /*let postObj = { 
@@ -127,7 +139,7 @@ $stmt->execute();
                     equipe: team
                 }
                 let post = JSON.stringify(postObj)*/
-                const url = "./includes/update_teams.php?user="+id+"&equipe="+team
+                const url = "./includes/update_teams.php?user="+id+"&equipe="+team+"&selectedValue="+faction
                 let xhr = new XMLHttpRequest()
                 xhr.open('GET', url, true)
                 xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
